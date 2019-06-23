@@ -1,0 +1,16 @@
+<!--
+ - Created by gmt on 2019-06-15.
+ -->
+
+<aura:component description="CardTitle">
+    <aura:attribute name="icon" type="String"/>
+    <aura:attribute name="containerClass" type="String"/>
+    <aura:attribute name="title" type="Aura.Component[]"/>
+    <aura:attribute name="pageReference" type="Object"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.init}"/>
+    <div aura:id="titleContent" onclick="{!c.handleClick}" class="{!v.pageReference ? 'cursor' : ''}">
+        <span class="icon">{!v.icon}</span>
+        <span class="card-title">{!v.title}</span>
+    </div>
+</aura:component>

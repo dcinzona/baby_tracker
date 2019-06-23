@@ -1,0 +1,6 @@
+<!--
+ - Created by gmt on 2019-06-15.
+ -->
+
+<aura:tokens extends="force:base">
+</aura:tokens>

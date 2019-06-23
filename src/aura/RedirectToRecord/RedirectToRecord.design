@@ -1,0 +1,7 @@
+<!--
+ - Created by gmt on 6/2/2019.
+ -->
+
+<design:component>
+    <design:attribute label="recordId" name="recordId" description="Target Redirect ID" />
+</design:component>

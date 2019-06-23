@@ -1,0 +1,21 @@
+<!--
+ - Created by gmt on 2019-06-15.
+ -->
+
+<aura:component description="cardFooterTargetBadge" controller="ApexHelperController">
+    <aura:attribute type="String" name="targetCategory"/>
+    <aura:attribute type="String" name="targetValue"/>
+    <aura:attribute type="CT_Defaults__c" name="defaults"/>
+    <aura:attribute type="Aura.Component[]" name="otherContent" />
+    <aura:handler name="change" value="{!v.targetCategory}" action="{!c.init}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <div>
+        <aura:if isTrue="{!v.targetValue}">
+            <lightning:badge label="{!'Target: ' + v.targetValue}">
+            </lightning:badge>
+        </aura:if>
+        <aura:if isTrue="{!v.otherContent}">
+            {!v.otherContent}
+        </aura:if>
+    </div>
+</aura:component>

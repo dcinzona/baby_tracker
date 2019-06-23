@@ -1,0 +1,16 @@
+/**
+ * Created by gmt on 2019-06-15.
+ */
+
+.THIS .largeText{
+    font-size: 5em;
+}
+.THIS .good{
+    color: #04844b;
+}
+.THIS .bad{
+    color: #a12b2b;
+}
+.THIS .warning{
+    color: #844800;
+}

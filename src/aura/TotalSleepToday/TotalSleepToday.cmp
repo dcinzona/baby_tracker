@@ -1,0 +1,30 @@
+<!--
+ - Created by gmt on 2019-06-14.
+ -->
+
+<aura:component description="TotalSleepToday"
+                implements="force:appHostable,flexipage:availableForAllPageTypes"
+                controller="ApexHelperController">
+
+    <aura:attribute name="HoursSleptToday" type="Integer"/>
+    <aura:attribute name="today" type="Date" />
+    <aura:attribute name="pageReference" type="Object" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <lightning:card>
+        <aura:set attribute="title">
+            <c:CardTitle icon="💤" pageReference="{!v.pageReference}">
+                <aura:set attribute="title">
+                    Sleep Today: <span class="titleText">{!v.today}</span>
+                </aura:set>
+            </c:CardTitle>
+        </aura:set>
+        <aura:set attribute="footer">
+            <c:cardFooterTargetBadge targetCategory="sleep" />
+        </aura:set>
+        <div class="slds-card__body slds-card__body_inner slds-text-align--center">
+            <p style="font-size: 2rem; font-weight: bold; color: green;">{!v.HoursSleptToday}</p>
+            <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium"> hours</p>
+        </div>
+    </lightning:card>
+</aura:component>

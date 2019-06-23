@@ -1,0 +1,18 @@
+<!--
+ - Created by gmt on 6/13/2019.
+ -->
+
+<aura:component description="TotalVitaminD" implements="force:appHostable,flexipage:availableForAllPageTypes"  controller="ApexHelperController">
+
+    <aura:attribute name="VitaminDToday" type="Integer"/>
+    <aura:attribute name="style" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <lightning:card title="💊 Vitamin D IUs Today">
+        <aura:set attribute="footer">
+            <c:cardFooterTargetBadge targetCategory="vitaminD" />
+        </aura:set>
+        <div class="slds-card__body slds-card__body_inner slds-align--absolute-center">
+            <span class="{!'largeText ' + v.style}"> {!v.VitaminDToday}</span>
+        </div>
+    </lightning:card>
+</aura:component>

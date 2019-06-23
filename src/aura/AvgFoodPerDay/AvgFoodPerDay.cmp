@@ -1,0 +1,36 @@
+<!--
+ - Created by gmt on 2019-06-18.
+ -->
+
+<aura:component description="AvgFoodPerDay"
+                implements="force:appHostable,flexipage:availableForAllPageTypes"
+                controller="ApexHelperController">
+
+    <aura:attribute name="totalML" type="Integer"/>
+    <aura:attribute name="totalOZ" type="Integer"/>
+    <aura:attribute name="numberOfDays" type="Integer" />
+    <aura:attribute name="pageReference" type="Object" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <lightning:card>
+        <aura:set attribute="title">
+            <c:CardTitle icon="🐽" pageReference="{!v.pageReference}">
+                <aura:set attribute="title">
+                    Food Daily Average
+                </aura:set>
+            </c:CardTitle>
+        </aura:set>
+        <aura:set attribute="footer">
+            <c:cardFooterTargetBadge targetCategory="food" />
+        </aura:set>
+        <div class="slds-card__body slds-card__body_inner slds-text-align--center">
+            <p class="slds-text-heading_medium">Last <strong>{!v.numberOfDays}</strong> Days
+            </p>
+            <p class="slds-text-heading_large slds-text-color_success" style="font-size:2rem; font-weight: bold;">
+                {!v.totalOZ} oz
+            </p>
+            <p class="slds-text-heading_large slds-text-color_default" style="font-weight: bold;">
+                {!v.totalML} ml
+            </p>
+        </div>
+    </lightning:card>
+</aura:component>

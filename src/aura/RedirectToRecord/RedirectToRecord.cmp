@@ -1,0 +1,8 @@
+<!--
+ - Created by gmt on 6/2/2019.
+ -->
+<aura:component implements="lightning:availableForFlowScreens,lightning:availableForFlowActions" access="global">
+    <aura:attribute name="recordId" type="String" access="global"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <p>Redirecting to {!v.recordId}</p>
+</aura:component>

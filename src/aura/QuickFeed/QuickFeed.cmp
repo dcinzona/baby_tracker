@@ -1,0 +1,10 @@
+<!--
+ - Created by gmt on 6/14/2019.
+ -->
+
+<aura:component description="QuickFeed" implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickAction">
+    <lightning:quickActionAPI aura:id="quickActionAPI"/>
+    <div>
+        <lightning:button label="Quick Feed" onclick="{!c.quickFeed}"/>
+    </div>
+</aura:component>
