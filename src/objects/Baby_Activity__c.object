@@ -450,6 +450,20 @@
     </fields>
     <label>Baby Activity</label>
     <listViews>
+        <fullName>Achievements</fullName>
+        <columns>NAME</columns>
+        <columns>Milestone_Title__c</columns>
+        <columns>Date_Time__c</columns>
+        <columns>Comments__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Baby_Activity__c.Milestone</value>
+        </filters>
+        <label>Achievements</label>
+    </listViews>
+    <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
         <columns>Icon__c</columns>

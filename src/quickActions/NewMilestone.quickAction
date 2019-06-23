@@ -5,7 +5,7 @@
         <formula>NOW()</formula>
     </fieldOverrides>
     <icon>award</icon>
-    <label>Milestone</label>
+    <label>Achieve</label>
     <optionsCreateFeedItem>true</optionsCreateFeedItem>
     <quickActionLayout>
         <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
