@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>*</members>
@@ -23,6 +23,9 @@
     <types>
         <members>Baby_Activity__c</members>
         <members>CT_Defaults__c</members>
+        <members>Baby_Measure__c</members>
+        <members>Contact</members>
+        <members>Task</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -32,11 +35,87 @@
     <types>
         <members>Baby_Activity__c.NewFeedRecord</members>
         <members>Log_Baby_Feed</members>
+        <members>Baby_Activity__c.End_Sleep</members>
+        <members>Log_Sleep</members>
+        <members>Measurement</members>
+        <members>NewMilestone</members>
+        <members>Quick_Heal</members>
         <name>QuickAction</name>
     </types>
     <types>
         <members>*</members>
         <name>StaticResource</name>
+    </types>
+    <types>
+        <members>Salesforce1</members>
+        <name>AppMenu</name>
+    </types>
+    <types>
+        <members>LRG_DSC0884</members>
+        <members>logo</members>
+        <members>logo1</members>
+        <members>piglogo</members>
+        <members>pignose</members>
+        <name>ContentAsset</name>
+    </types>
+    <types>
+        <members>Baby_Tracker</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>New_Feed_Record_logged</members>
+        <members>New_Sleep_Record_Logged</members>
+        <name>CustomNotificationType</name>
+    </types>
+    <types>
+        <members>At_a_Glance</members>
+        <members>Baby_Activity__c</members>
+        <members>Baby_Measure__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Shared</members>
+        <members>Shared/wUzqAQWhmQsYrKNbxREKkwYezKPRGm</members>
+        <name>Dashboard</name>
+    </types>
+    <types>
+        <members>Baby_Measures</members>
+        <members>Create_Quick_Feed</members>
+        <members>Notify_on_new_feed</members>
+        <members>Set_Default_Baby</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>Baby_Measures</members>
+        <members>Create_Quick_Feed</members>
+        <members>Notify_on_new_feed</members>
+        <members>Set_Default_Baby</members>
+        <name>FlowDefinition</name>
+    </types>
+    <types>
+        <members>Baby_Activity__c-Baby Activity Layout</members>
+        <members>Baby_Activity__c-Feed</members>
+        <members>Baby_Activity__c-Heal</members>
+        <members>Baby_Activity__c-Milestone</members>
+        <members>Baby_Activity__c-Sleep</members>
+        <members>Baby_Measure__c-Baby Measure Layout</members>
+        <members>Contact-Baby</members>
+        <members>Global-Global Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Pig</members>
+        <members>Pigbabytoot</members>
+        <name>LightningExperienceTheme</name>
+    </types>
+    <types>
+        <members>unfiled$public</members>
+        <members>unfiled$public/Feed_Per_Day_Average_Vr3</members>
+        <members>unfiled$public/Feeds_Over_Time_qRL</members>
+        <members>unfiled$public/Feeds_Today_3fL</members>
+        <members>unfiled$public/Milk_v_Formula_yp1</members>
+        <members>unfiled$public/Sleep_Over_Time_3iQ</members>
+        <name>Report</name>
     </types>
     <version>45.0</version>
 </Package>

@@ -1,0 +1,16 @@
+<!--
+ - Created by gmt on 6/24/2019.
+ -->
+
+<aura:component description="ActivityTimeline_Item_DropDown">
+    <aura:attribute name="date" type="Datetime"/>
+    <p class="slds-timeline__date"><lightning:formattedDateTime value="{!v.date}"
+                                                                hour="2-digit" minute="2-digit"
+                                                                timeZoneName="short"
+                                                                timeZone="America/New_York"/> | <lightning:formattedDateTime value="{!v.date}"
+                                                                                 year="numeric" day="2-digit" month="long"
+                                                                                 timeZone="America/New_York"/> </p>
+    <button class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small" aria-haspopup="true" title="More Options for this item">
+        <lightning:icon src="/assets/icons/utility-sprite/svg/symbols.svg#down" alternativeText="Down" />
+    </button>
+</aura:component>

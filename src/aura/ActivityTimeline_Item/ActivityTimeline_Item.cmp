@@ -1,0 +1,57 @@
+<!--
+ - Created by gmt on 6/24/2019.
+ -->
+
+<aura:component description="ActivityTimeline_Item">
+    <aura:attribute name="activityType" type="String" default="Feed"/>
+    <aura:attribute name="itemDetail" type="ActivityTimeline_Model"/>
+
+    <div class="slds-timeline__item_expandable slds-timeline__item_feed">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <button class="slds-button slds-button_icon" title="Toggle details" aria-controls="task-item-base">
+                    <lightning:icon icon-name="utility:switch" size="x-small" />
+                    <span class="slds-assistive-text">Toggle details</span>
+                </button>
+                <div class="slds-icon_container slds-timeline__icon" title="{!v.itemDetail.Subject}">
+                    <div class="" style="font-size: 1.4rem">{!v.itemDetail.Icon} </div>
+                </div>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
+                    <div class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
+                        <h3 class="slds-truncate" title="{!v.itemDetail.Subject}">
+                            <a href="javascript:void(0);">
+                                <strong>{!v.itemDetail.Subject}</strong>
+                            </a>
+                        </h3>
+                        <div class="slds-no-flex">
+                            <!-- icon -->
+                        </div>
+                    </div>
+                    <div class="slds-timeline__actions slds-timeline__actions_inline">
+                        <c:ActivityTimeLine_Item_DropDown date="{!v.itemDetail.ActualDate}"/>
+                    </div>
+                </div>
+                <p class="slds-m-horizontal_xx-small">
+                    {!v.itemDetail.Detail}
+                </p>
+                <article class="slds-box slds-timeline__item_details slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small" id="task-item-base" aria-hidden="true">
+                    <ul class="slds-list_horizontal slds-wrap">
+                        <li class="slds-grid slds-grid_vertical slds-size_1-of-2 slds-p-bottom_small">
+                            <span class="slds-text-title slds-p-bottom_x-small">Name</span>
+                            <span class="slds-text-body_medium slds-truncate" title="Charlie Gomez">
+                              <a href="javascript:void(0);">{!v.itemDetail.Recipients}</a>
+                            </span>
+                        </li>
+                    </ul>
+                    <div>
+                        <span class="slds-text-title">Comments</span>
+                        <p class="slds-p-top_x-small">{!v.itemDetail.Detail}</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+
+</aura:component>

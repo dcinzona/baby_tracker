@@ -1,0 +1,22 @@
+<!--
+ - Created by gmt on 6/24/2019.
+ -->
+
+<aura:component description="Activity Timeline"
+                implements="force:appHostable,flexipage:availableForAllPageTypes"
+                controller="ActivityTimeline_Controller">
+    <!-- List of Activity Timeline Items -->
+    <aura:attribute name="timeLineItems" type="ActivityTimeline_Model[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <div>
+        <lightning:card title="Activity Records">
+            <ul class="slds-timeline">
+                <aura:iteration items="{!v.timeLineItems}" var="item">
+                    <li>
+                        <c:ActivityTimeLine_Item activityType="{!item.ActivityTimelineType}" itemDetail="{!item}"/>
+                    </li>
+                </aura:iteration>
+            </ul>
+        </lightning:card>
+    </div>
+</aura:component>
