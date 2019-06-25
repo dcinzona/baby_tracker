@@ -6,17 +6,15 @@
                 implements="force:appHostable,flexipage:availableForAllPageTypes"
                 controller="ActivityTimeline_Controller">
     <!-- List of Activity Timeline Items -->
-    <aura:attribute name="timeLineItems" type="ActivityTimeline_Model[]"/>
+    <aura:attribute name="timeLineItems" type="Baby_Activity__c[]"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-    <div>
-        <lightning:card title="Activity Records">
-            <ul class="slds-timeline">
-                <aura:iteration items="{!v.timeLineItems}" var="item">
-                    <li>
-                        <c:ActivityTimeLine_Item activityType="{!item.ActivityTimelineType}" itemDetail="{!item}"/>
-                    </li>
-                </aura:iteration>
-            </ul>
-        </lightning:card>
+    <div class="slds-box">
+        <ul class="slds-timeline">
+            <aura:iteration items="{!v.timeLineItems}" var="item">
+                <li>
+                    <c:ActivityTimeLine_Item activityType="{!item.RecordType.Name}" record="{!item}"/>
+                </li>
+            </aura:iteration>
+        </ul>
     </div>
 </aura:component>

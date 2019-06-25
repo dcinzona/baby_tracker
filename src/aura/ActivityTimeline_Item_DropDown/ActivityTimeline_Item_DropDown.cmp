@@ -11,6 +11,6 @@
                                                                                  year="numeric" day="2-digit" month="long"
                                                                                  timeZone="America/New_York"/> </p>
     <button class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small" aria-haspopup="true" title="More Options for this item">
-        <lightning:icon src="/assets/icons/utility-sprite/svg/symbols.svg#down" alternativeText="Down" />
+        <lightning:icon iconName="utility:down" alternativeText="Down" size="x-small" />
     </button>
 </aura:component>

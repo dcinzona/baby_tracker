@@ -1,10 +1,10 @@
 public class ActivityTimeline_Controller {
 
     @AuraEnabled
-    public static List<ActivityTimeline_Model> getActivityTimeline()
+    public static List<Baby_Activity__c> getActivityTimeline()
     {
         // Create a return List
-        List<ActivityTimeline_Model> returnList = new List<ActivityTimeline_Model>();
+        List<Baby_Activity__c> returnList = new List<Baby_Activity__c>();
 
             // Add Tasks Types
             addFeeds(returnList);
@@ -20,11 +20,12 @@ public class ActivityTimeline_Controller {
     }
 
     @AuraEnabled
-    public static void addFeeds(List<ActivityTimeline_Model> returnList)
+    public static void addFeeds(List<Baby_Activity__c> returnList)
     {
         //List<Task> taskList =[select   Id, Type, Owner.Name, Status, Who.Name, Subject, Description, ActivityDate from     Task where    WhatId =:recordId and (Type = 'Other' OR Type = Null) and ActivityDate != null ];
-        LIST<Baby_Activity__c> recs = [SELECT Id,
+        List<Baby_Activity__c> recs = [SELECT Id,
                 Date_Time__c,
+                Amount__c,
                 Date__c,
                 Time__c,
                 Hours_Slept__c,
@@ -53,7 +54,7 @@ public class ActivityTimeline_Controller {
             taskItem.Assigned = t.Owner.Name;
             taskItem.Icon = t.Icon__c;
 
-            returnList.add(taskItem);
+            returnList.add(t);
         }
     }
 

@@ -4,6 +4,12 @@
 
 .THIS .slds-timeline__icon{
     background: white;
-    padding-bottom: 2px;
-    margin-left: -5px;
+}
+.THIS.slds-timeline__item_expandable.slds-is-open .slds-timeline__details-action-icon {
+    transform: rotate(0);
+    transform-origin: 45%;
+}
+.THIS .time-range-arrow-icon{
+    top: -2px;
+    position: relative;
 }
