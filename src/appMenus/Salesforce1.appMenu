@@ -5,6 +5,10 @@
         <type>CustomTab</type>
     </appMenuItems>
     <appMenuItems>
+        <name>Activity_Timeline</name>
+        <type>CustomTab</type>
+    </appMenuItems>
+    <appMenuItems>
         <name>Feed</name>
         <type>StandardAppMenuItem</type>
     </appMenuItems>

@@ -12,7 +12,7 @@
         <ul class="slds-timeline">
             <aura:iteration items="{!v.timeLineItems}" var="item">
                 <li>
-                    <c:ActivityTimeLine_Item activityType="{!item.RecordType.Name}" record="{!item}"/>
+                    <c:ActivityTimeline_Item activityType="{!item.RecordType.Name}" record="{!item}"/>
                 </li>
             </aura:iteration>
         </ul>
