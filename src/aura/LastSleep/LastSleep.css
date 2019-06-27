@@ -6,5 +6,11 @@
     max-width: 200px;
 }
 .THIS .focusText{
-    font-size:2rem; font-weight: bold;
+    font-size:2rem;
+    font-weight: bold;
+}
+
+.THIS .lastSleep .focusText{
+    font-weight: normal;
+    opacity: .5;
 }
