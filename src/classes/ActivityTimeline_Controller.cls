@@ -34,7 +34,8 @@ public class ActivityTimeline_Controller {
                 RecordType.Name,
                 Comments__c,
                 Owner.Name,
-                Baby__r.Name
+                Baby__r.Name,
+                Milestone_Title__c
                 FROM Baby_Activity__c
                 //WHERE RecordType.DeveloperName = 'Feed'
                 WHERE Date_Time__c >= YESTERDAY

@@ -1,0 +1,10 @@
+/**
+ * Created by gmt on 2019-06-27.
+ */
+
+.THIS .timeWrapper{
+    max-width: 200px;
+}
+.THIS .focusText{
+    font-size:2rem; font-weight: bold;
+}

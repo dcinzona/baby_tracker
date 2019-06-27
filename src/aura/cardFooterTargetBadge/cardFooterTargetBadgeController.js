@@ -10,7 +10,6 @@
                 //saving custom setting to attribute
                 var defaults = response.getReturnValue();
                 cmp.set("v.defaults", defaults);
-                console.log(defaults);
                 var targetCategory = cmp.get('v.targetCategory');
 
                 switch(targetCategory){

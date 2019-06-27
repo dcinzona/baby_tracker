@@ -9,6 +9,7 @@
     <aura:attribute name="currentRecord" type="Baby_Activity__c"/>
     <aura:attribute name="currentlySleeping" type="Boolean"/>
     <aura:attribute name="pageReference" type="Object"/>
+    <aura:attribute name="sleepingSince" type="Object"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 
     <aura:if isTrue="{!v.record}">
@@ -33,7 +34,12 @@
                 </c:CardTitle>
             </aura:set>
             <aura:set attribute="footer">
-                <lightning:badge label="{!'Total: ' + v.record.Amount__c}"/>
+                <aura:if isTrue="{!v.currentlySleeping}">
+                    <lightning:badge label="{!'Last Sleep: ' + v.record.Amount__c}"/>
+                <aura:set attribute="else">
+                    <lightning:badge label="{!'Total: ' + v.record.Amount__c}"/>
+                </aura:set>
+                </aura:if>
             </aura:set>
 
             <div class="slds-card__body slds-card__body_inner">
@@ -41,23 +47,48 @@
 
                     <div class="slds-text-align--center" style="margin-top: -1rem;">
                         <aura:if isTrue="{!v.currentlySleeping}">
-                            <p style="margin:10px 0 0 0;" class="slds-text-heading_medium">Last Sleep</p>
+                            <p style="margin:10px 0 0 0;" class="slds-text-heading_medium">Asleep For:</p>
+                            <div class="slds-grid slds-grid_align-center">
+                                <aura:if isTrue="{!v.sleepingSince.hours > 0}">
+                                    <div class="slds-col">
+                                        <div class="slds-text-color_success focusText" >
+                                            {!v.sleepingSince.hours}
+                                        </div>
+                                        <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium slds-m-horizontal--small">
+                                            Hour{!v.sleepingSince.hours != 1 ? 's': ''}
+                                        </p>
+                                    </div>
+                                </aura:if>
+                                <div class="slds-col">
+                                    <div class="slds-text-color_success focusText">
+                                        {!v.sleepingSince.minutes}
+                                    </div>
+                                    <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
+                                        Minute{!v.sleepingSince.minutes != 1  ? 's': ''}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <aura:set attribute="else">
+
+                                <div class="slds-text-color_success focusText">
+                                    {!v.record.Hours_Slept__c}
+                                </div>
+                                <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium"> hours
+                                </p>
+                                <p class="slds-text-body_regular">
+                                    <lightning:formattedDateTime value="{!v.record.Date_Time__c}"
+                                                                 hour="2-digit" minute="2-digit"
+                                                                 timeZone="America/New_York"/>
+                                    -
+                                    <lightning:formattedDateTime value="{!v.record.Sleep_End_Datetime__c}"
+                                                                 hour="2-digit" minute="2-digit"
+                                                                 timeZoneName="short"
+                                                                 timeZone="America/New_York"/>
+                                </p>
+
+                            </aura:set>
                         </aura:if>
-                        <div class="slds-text-color_success" style="font-size:2rem; font-weight: bold;">
-                            {!v.record.Hours_Slept__c}
-                        </div>
-                        <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium"> hours
-                        </p>
-                        <p class="slds-text-body_regular">
-                            <lightning:formattedDateTime value="{!v.record.Date_Time__c}"
-                                                         hour="2-digit" minute="2-digit"
-                                                         timeZone="America/New_York"/>
-                            -
-                            <lightning:formattedDateTime value="{!v.record.Sleep_End_Datetime__c}"
-                                                         hour="2-digit" minute="2-digit"
-                                                         timeZoneName="short"
-                                                         timeZone="America/New_York"/>
-                        </p>
                     </div>
                 </lightning:tile>
             </div>
