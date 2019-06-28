@@ -82,6 +82,27 @@ public with sharing class ApexHelperController {
 
     }
 
+    @AuraEnabled//(Cacheable=true)
+    public static Baby_Activity__c getLastPlay(){
+
+        LIST<Baby_Activity__c> acts = [SELECT Id,
+                Name,
+                Date_Time__c,
+                Sleep_End_Datetime__c,
+                Icon__c,
+                Amount__c,
+                Comments__c,
+                RecordType.Name,
+                RecordTypeId
+        FROM Baby_Activity__c
+        WHERE RecordType.DeveloperName = 'Play'
+        ORDER BY Date_Time__c DESC
+        LIMIT 1 ];
+
+        return acts.size() > 0 ? acts[0] : null;
+
+    }
+
     @AuraEnabled(Cacheable=true)
     public static Integer getTotalVitaminDToday(){
 
@@ -191,5 +212,17 @@ public with sharing class ApexHelperController {
     @AuraEnabled(Cacheable=true)
     public static CT_Defaults__c getDefaults(){
         return CT_Defaults__c.getOrgDefaults();
+    }
+
+
+    @AuraEnabled(Cacheable=true)
+    public static Id getRecordTypeIdForName(String devName){
+        return AuraDataWriter.getRecordTypeIdForName(devName);
+    }
+
+    @AuraEnabled
+    public static Baby_Activity__c updateSleepRecord(Id recordId, Datetime endDate){
+        AuraDataWriter.updateSleepRecord(recordId,endDate);
+        return getLastSleep();
     }
 }

@@ -1,19 +1,10 @@
 /**
  * Created by gmt on 2019-06-27.
  */
-
 .THIS{
     position: relative;
-}
-.THIS .timeWrapper{
-    max-width: 200px;
 }
 .THIS .focusText{
     font-size:2rem;
     font-weight: bold;
-}
-
-.THIS .lastSleep .focusText{
-    font-weight: normal;
-    opacity: .5;
 }

@@ -9,11 +9,13 @@
     <aura:attribute name="pageReference" type="Object"/>
     <lightning:navigation aura:id="navService"/>
     <aura:handler name="change" value="{!v.pageReference}" action="{!c.init}"/>
-    
-    <div aura:id="titleContent" onclick="{!c.handleClick}" class="{!v.pageReference ? 'cursor' : ''}">
-        <aura:if isTrue="{!v.icon}">
-            <span class="icon">{!v.icon}</span>
-        </aura:if>
-        <span class="card-title">{!v.title}</span>
+
+    <div class="slds-m-right--medium">
+        <div aura:id="titleContent" onclick="{!c.handleClick}" class="{!v.pageReference ? 'cursor' : ''}">
+            <aura:if isTrue="{!v.icon}">
+                <span class="icon">{!v.icon}</span>
+            </aura:if>
+            <span class="card-title">{!v.title}</span>
+        </div>
     </div>
 </aura:component>

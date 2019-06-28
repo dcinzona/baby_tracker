@@ -1,0 +1,7 @@
+<!--
+ - Created by gmt on 2019-06-27.
+ -->
+
+<design:component>
+    <design:attribute name="record" label="Baby Activity" description="Baby Activity Record"/>
+</design:component>

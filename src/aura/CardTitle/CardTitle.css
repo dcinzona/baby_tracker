@@ -2,7 +2,7 @@
  * Created by gmt on 2019-06-15.
  */
 
-.THIS.cursor{
+.THIS .cursor{
     cursor: pointer;
 }
 .THIS .icon{
@@ -14,9 +14,9 @@
 .THIS .card-title{
     line-height: 1.6em;
 }
-.THIS.cursor .titleText{
+.THIS .cursor .titleText{
     color:token(colorTextLink);
 }
-.THIS.cursor .titleText.red{
+.THIS .cursor .titleText.red{
     color:token(colorTextError);
 }

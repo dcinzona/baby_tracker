@@ -1,0 +1,13 @@
+<!--
+ - Created by gmt on 2019-06-28.
+ -->
+
+<aura:component description="SavingOverlay">
+    <aura:attribute name="saving" type="Boolean"/>
+
+    <aura:renderIf isTrue="{!v.saving}">
+        <div class="backgroundInverse">
+            <lightning:spinner alternativeText="Saving..." variant="brand" size="large" />
+        </div>
+    </aura:renderIf>
+</aura:component>

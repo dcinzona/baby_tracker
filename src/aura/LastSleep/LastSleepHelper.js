@@ -4,6 +4,8 @@
 
 ({
     getLastSleep: function(cmp){
+        cmp.set("v.loading", true);
+
         var action = cmp.get("c.getLastSleep");
         //action.setStorable();
         action.setCallback(this, function(response){
@@ -19,6 +21,7 @@
                 } else{
                     cmp.set("v.record", record);
                     cmp.set("v.currentlySleeping", false);
+                    cmp.set("v.loading", false);
                 }
 
                 var pageReference = {
@@ -31,49 +34,108 @@
                 };
 
                 cmp.set('v.pageReference', pageReference);
+
             }
         });
         $A.enqueueAction(action);
     },
     getLastCompletedSleep:function(cmp){
         var action = cmp.get("c.getLastCompletedSleep");
-        //action.setStorable();
+
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS") {
                 var record = response.getReturnValue();
                 cmp.set("v.record", record);
+                cmp.set("v.loading", false);
             }
         });
         $A.enqueueAction(action);
     },
+
+    durationInterval: null,
     getSleepingSinceText:function(cmp){
         var rec = cmp.get('v.currentRecord');
-        var timer = setInterval(function() {
-            if(rec != undefined){
-                var now = new Date();
-                var fellAsleep = new Date(rec.Date_Time__c);
+        if(rec != undefined){
+            var now = new Date();
+            var fellAsleep = new Date(rec.Date_Time__c);
 
-                // get total seconds between the times
-                var delta = Math.abs(now - fellAsleep) / 1000;
+            // get total seconds between the times
+            var delta = Math.abs(now - fellAsleep) / 1000;
 
-                // calculate (and subtract) whole days
-                var days = Math.floor(delta / 86400);
-                delta -= days * 86400;
+            // calculate (and subtract) whole days
+            var days = Math.floor(delta / 86400);
+            delta -= days * 86400;
 
-                // calculate (and subtract) whole hours
-                var hours = Math.floor(delta / 3600) % 24;
-                delta -= hours * 3600;
+            // calculate (and subtract) whole hours
+            var hours = Math.floor(delta / 3600) % 24;
+            delta -= hours * 3600;
 
-                // calculate (and subtract) whole minutes
-                var minutes = Math.floor(delta / 60) % 60;
-                delta -= minutes * 60;
+            // calculate (and subtract) whole minutes
+            var minutes = Math.floor(delta / 60) % 60;
+            delta -= minutes * 60;
 
-                var data = {days : days, hours : hours , minutes : minutes};//"Asleep for: " + hours + " hours, " + minutes + " minutes"
-                cmp.set('v.sleepingSince', data);
-                //console.log(data);
+            // what's left is seconds
+            var seconds = Math.round(delta % 60);
 
-            }
-        },1000);
+            var data = {days : days, hours : hours , minutes : minutes, seconds: seconds};
+
+            cmp.set('v.sleepingSince', data);
+        }
+        this.durationInterval =  setTimeout($A.getCallback(() => this.getSleepingSinceText(cmp)), 1000);
+    },
+
+    endSleep:function(component){
+        if(this.durationInterval){
+            window.clearTimeout(this.durationInterval);
+        }
+        let recId = component.get('v.currentRecord.Id');
+        this.saveRecord(component, recId, new Date());
+    },
+    
+    resumeSleep:function(component){
+        if(this.durationInterval){
+            window.clearTimeout(this.durationInterval);
+        }
+        let recId = component.get('v.record.Id');
+        this.saveRecord(component, recId,null);
+    },
+
+    saveRecord:function(component, recId, endDate){
+
+        component.set('v.saving', true);
+        if(recId){
+            let action = component.get("c.updateSleepRecord");
+            action.setParam('recordId', recId);
+            action.setParam('endDate', endDate);
+            action.setCallback(this, function(response){
+                let state = response.getState();
+                if (state === "SUCCESS") {
+                    component.set('v.saving', false);
+                    this.resetComponent(component);
+                }
+                else{
+                    component.set('v.saving', false);
+                    console.log(state);
+                }
+            });
+            $A.enqueueAction(action);
+        }
+        else{
+            component.set('v.saving', false);
+            console.log(component.get('v.record'));
+        }
+    },
+    resetComponent:function (cmp) {
+
+        cmp.set("v.record", null);
+        cmp.set("v.currentRecord", null);
+        cmp.set('v.sleepingSince', null);
+        cmp.set('v.pageReference', null);
+        cmp.set("v.currentlySleeping", false);
+        cmp.set('v.saving', false);
+        cmp.set('v.loading', false);
+        this.getLastSleep(cmp);
+
     }
 });
