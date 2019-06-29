@@ -77,13 +77,20 @@
                     resultsToast.setParams({
                         "title": "Saved",
                         "message": "The record was saved.",
-                        "variant": "success"
+                        "type": "success"
                     });
                     resultsToast.fire();
                 }
             }
             if (state === 'ERROR'){
                 component.set('v.saving', false);
+                let resultsToast = $A.get("e.force:showToast");
+                resultsToast.setParams({
+                    "title": "Error",
+                    "message": "There was an error saving the record.",
+                    "type": "error"
+                });
+                resultsToast.fire();
             }
         });
         $A.enqueueAction(action);
@@ -95,6 +102,8 @@
         component.set("v.endTime",null);
         component.set('v.comments','Tummy Time');
         window.clearTimeout(this.durationInterval);
+        //var childCmp = component.find("cLastPlay");
+        //childCmp.refresh();
         this.setUIFromRecord(component);
     },
 
@@ -103,26 +112,9 @@
         if(record && record.Sleep_End_Datetime__c == null){
             component.set("v.startTime", new Date(record.Date_Time__c));
             component.set('v.comments',record.Comments__c);
+            component.set('v.newRecordId', record.Id); //need this so that when we end sleep, it sets the record value correctly if we quit and re-open the app
             this.calculateTime(component);
         }
-    },
-
-    getRecordTypeId:function(component){
-
-        let action = component.get("c.getRecordTypeIdForName");
-        action.setParam('devName','Play');
-        action.setCallback(this, function(response){
-            let state = response.getState();
-            if (state === "SUCCESS") {
-                let id = response.getReturnValue();
-                this.recordTypeId =  id;
-                console.log(this.recordTypeId);
-            }
-            else{
-                console.log(state);
-            }
-        });
-        $A.enqueueAction(action);
     },
 
     deleteRecord:function (component) {
@@ -136,6 +128,7 @@
                 let state = response.getState();
                 if (state === "SUCCESS") {
                     component.set('v.saving', false);
+                    this.setResetTimeOnUI(component);
                     $A.get('e.force:refreshView').fire();
                 }
                 else{

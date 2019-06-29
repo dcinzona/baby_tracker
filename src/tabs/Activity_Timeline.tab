@@ -3,6 +3,5 @@
     <description>Created by Lightning App Builder</description>
     <flexiPage>Activity_Timeline</flexiPage>
     <label>Activity Timeline</label>
-    <mobileReady>false</mobileReady>
     <motif>Custom10: Moon</motif>
 </CustomTab>

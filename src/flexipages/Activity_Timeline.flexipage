@@ -16,10 +16,13 @@
             <quickActionName>Log_Sleep</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Measurement</quickActionName>
+            <quickActionName>QuickPlay</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>NewMilestone</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>Measurement</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <template>

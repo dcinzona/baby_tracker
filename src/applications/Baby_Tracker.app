@@ -40,6 +40,42 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
+        <content>Achieve</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Baby_Activity__c</pageOrSobjectType>
+        <recordType>Baby_Activity__c.Milestone</recordType>
+        <type>Flexipage</type>
+        <profile>Standard</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Achieve</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Baby_Activity__c</pageOrSobjectType>
+        <recordType>Baby_Activity__c.Milestone</recordType>
+        <type>Flexipage</type>
+        <profile>Standard</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Achieve</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Baby_Activity__c</pageOrSobjectType>
+        <recordType>Baby_Activity__c.Milestone</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Achieve</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Baby_Activity__c</pageOrSobjectType>
+        <recordType>Baby_Activity__c.Milestone</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
         <content>Contact_Record_Page</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Contact</pageOrSobjectType>
@@ -76,12 +112,14 @@
     </profileActionOverrides>
     <setupExperience>all</setupExperience>
     <tabs>standard-home</tabs>
-    <tabs>Baby_Activity__c</tabs>
     <tabs>At_a_Glance</tabs>
+    <tabs>Activity_Timeline</tabs>
+    <tabs>Baby_Activity__c</tabs>
     <tabs>Baby_Measure__c</tabs>
     <tabs>standard-Feed</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Contact</tabs>
+    <tabs>Dev_Testing</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Cole_Tracker_UtilityBar</utilityBar>
 </CustomApplication>

@@ -37,6 +37,10 @@
         <type>StandardAppMenuItem</type>
     </appMenuItems>
     <appMenuItems>
+        <name>Dev_Testing</name>
+        <type>CustomTab</type>
+    </appMenuItems>
+    <appMenuItems>
         <name>Search</name>
         <type>StandardAppMenuItem</type>
     </appMenuItems>
