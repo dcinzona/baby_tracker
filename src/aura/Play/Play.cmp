@@ -31,7 +31,7 @@
             </aura:set>
             <aura:set attribute="actions">
                 <aura:if isTrue="{!v.playingNow == false}">
-                    <lightning:button label="New" onclick="{!c.startPlay}" variant="brand"/>
+                    <lightning:button label="Start" onclick="{!c.startPlay}" variant="brand"/>
                     <aura:set attribute="else">
                         <lightning:button label="End" variant="brand" class="slds-size--1-of-1" onclick="{!c.endAndSave}"/>
                     </aura:set>
