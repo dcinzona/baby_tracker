@@ -7,7 +7,7 @@
     <aura:attribute name="column2" type="Aura.Component[]" />
     <aura:attribute name="column3" type="Aura.Component[]" />
     <aura:attribute name="selectedTab" type="String" default="Feed" />
-
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
     <lightning:tabset selectedTabId="{!v.selectedTab}" onselect="{!c.selectTab}" class="design-allow-interaction toggle"  variant="scoped">
         <lightning:tab id="Feed" label="Feed">
                 {!v.column1}
