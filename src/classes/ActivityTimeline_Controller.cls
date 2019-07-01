@@ -6,17 +6,33 @@ public class ActivityTimeline_Controller {
         // Create a return List
         List<Baby_Activity__c> returnList = new List<Baby_Activity__c>();
 
-            // Add Tasks Types
-            addFeeds(returnList);
-            //addCalls(returnList, recordId);
-            //addMeetings(returnList, recordId);
-            //addEmails(returnList, recordId);
-            // Sort List
-            //returnList.sort();
+        addFeeds(returnList);
+        // Sort List
+        //returnList.sort();
 
 
         return returnList;
 
+    }
+
+    @AuraEnabled
+    public static List<Baby_Activity__c> getAchievements(){
+        return [ SELECT
+                Id,
+                Date_Time__c,
+                Amount__c,
+                Date__c,
+                Time__c,
+                Icon__c,
+                RecordType.Name,
+                Comments__c,
+                Owner.Name,
+                Baby__r.Name,
+                Milestone_Title__c
+                FROM Baby_Activity__c
+                WHERE RecordType.DeveloperName = 'Milestone'
+                ORDER BY Date_Time__c DESC
+        ];
     }
 
     @AuraEnabled
@@ -43,18 +59,6 @@ public class ActivityTimeline_Controller {
             ];
         for(Baby_Activity__c t: recs)
         {
-            ActivityTimeline_Model taskItem = new ActivityTimeline_Model();
-
-            taskItem.RecordId = t.Id;
-            taskItem.ActivityTimelineType = 'Feed';
-            taskItem.Subject = t.RecordType.Name;//t.Subject;
-            taskItem.Detail = t.Comments__c;
-            taskItem.ActualDate = t.Date_Time__c;
-            taskItem.ShortDate = t.Date_Time__c.format();
-            taskItem.Recipients = t.Baby__r.Name;
-            taskItem.Assigned = t.Owner.Name;
-            taskItem.Icon = t.Icon__c;
-
             returnList.add(t);
         }
     }

@@ -7,8 +7,34 @@
                 controller="ActivityTimeline_Controller">
     <!-- List of Activity Timeline Items -->
     <aura:attribute name="timeLineItems" type="Baby_Activity__c[]"/>
+    <aura:attribute name="selectedType" type="String" default="Activities"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-    <div class="slds-box">
+
+    <div>
+        <div class="slds-grid slds-m-bottom_medium">
+            <div class="slds-col">
+                <ul class="slds-button-group-row">
+                    <li class="slds-button-group-item">
+                        <lightning:buttonStateful
+                                state="{! v.selectedType == 'Activities' }"
+                                variant="{! v.selectedType == 'Activities' ? 'brand' : 'neutral' }"
+                                labelWhenOff="All Recent"
+                                labelWhenOn="All Recent"
+                                onclick="{! c.getActivityItems }"
+                        />
+                    </li>
+                    <li class="slds-button-group-item">
+                        <lightning:buttonStateful
+                                state="{! v.selectedType == 'Milestones' }"
+                                variant="{! v.selectedType == 'Milestones' ? 'brand' : 'neutral' }"
+                                labelWhenOff="Milestones"
+                                labelWhenOn="Milestones"
+                                onclick="{! c.getMilestones }"
+                        />
+                    </li>
+                </ul>
+            </div>
+        </div>
         <ul class="slds-timeline">
             <aura:iteration items="{!v.timeLineItems}" var="item">
                 <li>
