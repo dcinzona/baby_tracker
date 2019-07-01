@@ -10,7 +10,7 @@
     <aura:attribute name="numberOfDays" type="Integer" />
     <aura:attribute name="pageReference" type="Object" />
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-    <lightning:card>
+    <lightning:card class="slds-card_boundary">
         <aura:set attribute="title">
             <c:CardTitle icon="💤" pageReference="{!v.pageReference}">
                 <aura:set attribute="title">

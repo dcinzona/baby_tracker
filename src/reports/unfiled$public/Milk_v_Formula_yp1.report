@@ -48,19 +48,13 @@
             <column>Baby_Activity__c.Date__c</column>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>LAST_N_DAYS:7</value>
+            <value>TODAY</value>
         </criteriaItems>
         <criteriaItems>
             <column>CUST_RECORDTYPE</column>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>Baby_Activity__c.Feed</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Baby_Activity__c.Date__c</column>
-            <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value>TODAY</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>

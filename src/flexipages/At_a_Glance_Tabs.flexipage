@@ -2,31 +2,6 @@
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <componentInstances>
-            <componentName>Play</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>cacheAge</name>
-                <value>1440</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>label</name>
-                <value>Play Time in Minutes</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>reportName</name>
-                <value>Recent_Play_Records_gwI</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>showRefreshButton</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:reportChart</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>LastSleep</componentName>
-        </componentInstances>
-        <componentInstances>
             <componentName>LastFeed</componentName>
         </componentInstances>
         <componentInstances>
@@ -68,16 +43,42 @@
             </componentInstanceProperties>
             <componentName>flexipage:reportChart</componentName>
         </componentInstances>
+        <name>column1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <componentInstances>
-            <componentName>TotalSleepToday</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>AvgSleepPerDay</componentName>
+            <componentName>Play</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>cacheAge</name>
-                <value>45</value>
+                <value>1440</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>reportName</name>
+                <value>Recent_Play_Records_gwI</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showRefreshButton</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:reportChart</componentName>
+        </componentInstances>
+        <name>column2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>LastSleep</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentName>TotalSleepToday</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>cacheAge</name>
+                <value>1440</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>reportName</name>
@@ -89,7 +90,10 @@
             </componentInstanceProperties>
             <componentName>flexipage:reportChart</componentName>
         </componentInstances>
-        <name>main</name>
+        <componentInstances>
+            <componentName>AvgSleepPerDay</componentName>
+        </componentInstances>
+        <name>column3</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>At a Glance</masterLabel>
@@ -111,7 +115,7 @@
         </quickActionListItems>
     </quickActionList>
     <template>
-        <name>flexipage:defaultAppHomeTemplate</name>
+        <name>TabsTemplate</name>
     </template>
     <type>AppPage</type>
 </FlexiPage>

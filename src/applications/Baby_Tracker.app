@@ -76,7 +76,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Contact_Record_Page</content>
+        <content>Baby_Contact_Record_Page</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Contact</pageOrSobjectType>
         <recordType>Contact.Baby</recordType>
@@ -85,7 +85,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Contact_Record_Page</content>
+        <content>Baby_Contact_Record_Page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Contact</pageOrSobjectType>
         <recordType>Contact.Baby</recordType>
@@ -94,7 +94,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Contact_Record_Page</content>
+        <content>Baby_Contact_Record_Page</content>
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Contact</pageOrSobjectType>
         <recordType>Contact.Baby</recordType>
@@ -103,7 +103,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Contact_Record_Page</content>
+        <content>Baby_Contact_Record_Page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Contact</pageOrSobjectType>
         <recordType>Contact.Baby</recordType>

@@ -16,7 +16,7 @@
 
     <aura:if isTrue="{!v.record}">
             <div>
-                <lightning:card >
+                <lightning:card class="slds-card_boundary">
                     <aura:set attribute="title">
                         <c:CardTitle icon="{!v.record.Icon__c}" pageReference="{!v.pageReference}" >
                             <aura:set attribute="title">

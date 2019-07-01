@@ -7,7 +7,7 @@
     <aura:attribute name="pageReference" type="Object"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <aura:if isTrue="{!v.record}">
-        <lightning:card>
+        <lightning:card class="slds-card_boundary">
             <aura:set attribute="title">
                 <c:CardTitle icon="{!v.record.Icon__c}" pageReference="{!v.pageReference}">
                     <aura:set attribute="title">

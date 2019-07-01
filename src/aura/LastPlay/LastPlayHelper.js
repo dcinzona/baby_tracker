@@ -4,6 +4,7 @@
 
 ({
     getLastPlayRecord : function (component) {
+        component.set('v.loading', true);
         //get last record
         let action = component.get("c.getLastPlay");
         action.setCallback(this, function(response){
@@ -12,6 +13,7 @@
                 let record = response.getReturnValue();
                 component.set("v.record", record);
                 this.getMinutes(component);
+                component.set('v.loading', false);
             }
         });
         $A.enqueueAction(action);

@@ -215,7 +215,7 @@
         <formula>CASE( RecordType.DeveloperName , 
 &apos;Feed&apos;,  TEXT(Amount_ML__c) &amp; &apos; (ml)&apos;, 
 &apos;Sleep&apos;,  IF(!ISBLANK( Sleep_End_Datetime__c ), TEXT(Hours_Slept__c) &amp; &apos; hours&apos;, &apos;In progress...&apos;) , 
-&apos;Play&apos;,  IF(!ISBLANK( Sleep_End_Datetime__c ), TEXT(Hours_Slept__c) &amp; &apos; hours&apos;, &apos;In progress...&apos;) , 
+&apos;Play&apos;,  IF(!ISBLANK( Sleep_End_Datetime__c ), TEXT( ROUND(Hours_Slept__c * 60, 0) ) &amp; &apos; minutes&apos;, &apos;In progress...&apos;) , 
 &apos;&apos;)</formula>
         <inlineHelpText>Returns Feed Amount or Hours Slept based on record type of the record</inlineHelpText>
         <label>Amount</label>

@@ -1,0 +1,11 @@
+<!--
+ - Created by gmt on 2019-06-30.
+ -->
+
+<design:component label="Tabs Page">
+    <flexipage:template >
+        <flexipage:region name="column1" defaultWidth="Medium" />
+        <flexipage:region name="column2" defaultWidth="Medium" />
+        <flexipage:region name="column3" defaultWidth="Medium" />
+    </flexipage:template>
+</design:component>

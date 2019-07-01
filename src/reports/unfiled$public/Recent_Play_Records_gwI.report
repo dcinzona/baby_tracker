@@ -69,7 +69,7 @@
     <format>Summary</format>
     <groupingsDown>
         <field>Baby_Activity__c.Date__c</field>
-        <sortOrder>Asc</sortOrder>
+        <sortOrder>Desc</sortOrder>
     </groupingsDown>
     <name>Recent Play Records</name>
     <params>

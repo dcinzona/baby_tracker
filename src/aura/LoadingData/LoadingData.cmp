@@ -1,0 +1,13 @@
+<!--
+ - Created by gmt on 2019-07-01.
+ -->
+
+<aura:component description="LoadingData">
+    <div class="slds-card__body slds-card__body_inner">
+        <div role="status" class="slds-spinner slds-spinner_small">
+            <span class="slds-assistive-text">Loading</span>
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+</aura:component>

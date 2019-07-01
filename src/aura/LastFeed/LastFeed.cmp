@@ -6,7 +6,7 @@
     <aura:attribute name="lastFeed" type="Baby_Activity__c"/>
     <aura:attribute name="pageReference" type="Object"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-        <lightning:card>
+        <lightning:card class="slds-card_boundary">
             <aura:set attribute="title">
                 <c:CardTitle icon="{!v.lastFeed.Icon__c}" pageReference="{!v.pageReference}">
                     <aura:set attribute="title">
@@ -19,10 +19,12 @@
                     </aura:set>
                 </c:CardTitle>
             </aura:set>
-            <aura:set attribute="footer">
-                <lightning:badge label="{!v.lastFeed.Amount_ML__c + ' (ml)'}"/>
-                <lightning:badge label="{!v.lastFeed.Amount_OZ__c + ' (oz)'}"/>
-                <lightning:badge label="{!v.lastFeed.Food_Type__c}"/>
+
+            <aura:set attribute="actions">
+                <aura:renderIf isTrue="false">
+                    <!-- todo: Add functionality for quick feeds -->
+                    <lightning:button label="New" onclick="{!c.newFeed}" variant="brand" />
+                </aura:renderIf>
             </aura:set>
 
             <div class="slds-card__body slds-card__body_inner">
@@ -42,5 +44,11 @@
                     </div>
                 </lightning:tile>
             </div>
+
+            <aura:set attribute="footer">
+                <lightning:badge label="{!v.lastFeed.Amount_ML__c + ' (ml)'}"/>
+                <lightning:badge label="{!v.lastFeed.Amount_OZ__c + ' (oz)'}"/>
+                <lightning:badge label="{!v.lastFeed.Food_Type__c}"/>
+            </aura:set>
         </lightning:card>
 </aura:component>

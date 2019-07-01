@@ -16,7 +16,7 @@
 
 
     <div>
-        <lightning:card title="Play Widget">
+        <lightning:card class="slds-card_boundary">
             <aura:set attribute="title">
                 <c:CardTitle icon="{!v.record.Icon__c}" pageReference="{!v.pageReference}">
                     <aura:set attribute="title">
@@ -118,7 +118,7 @@
                     </aura:renderIf>
                     <aura:set attribute="else">
                         <aura:renderIf isTrue="{!v.record}">
-                            <lightning:badge label="{!v.record.Comments__c}"/>
+                            <lightning:badge label="{!v.record.Comments__c}" class="slds-truncate"/>
                         </aura:renderIf>
                     </aura:set>
                 </aura:if>
