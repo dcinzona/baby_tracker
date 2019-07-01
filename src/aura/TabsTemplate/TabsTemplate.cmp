@@ -8,21 +8,15 @@
     <aura:attribute name="column3" type="Aura.Component[]" />
     <aura:attribute name="selectedTab" type="String" default="Feed" />
 
-    <lightning:tabset selectedTabId="{!v.selectedTab}" onselect="{!c.selectTab}" class="design-allow-interaction toggle">
+    <lightning:tabset selectedTabId="{!v.selectedTab}" onselect="{!c.selectTab}" class="design-allow-interaction toggle"  variant="scoped">
         <lightning:tab id="Feed" label="Feed">
-            <div class="slds-m-horizontal--small">
                 {!v.column1}
-            </div>
         </lightning:tab>
         <lightning:tab  id="Sleep" label="Sleep">
-            <div class="slds-m-horizontal--small">
                 {!v.column3}
-            </div>
         </lightning:tab>
         <lightning:tab  id="Play" label="Play">
-            <div class="slds-m-horizontal--small">
                 {!v.column2}
-            </div>
         </lightning:tab>
         <lightning:tab  id="Timeline" label="Timeline">
             <c:ActivityTimeline />
