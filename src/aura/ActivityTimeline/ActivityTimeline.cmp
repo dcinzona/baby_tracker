@@ -8,6 +8,7 @@
     <!-- List of Activity Timeline Items -->
     <aura:attribute name="timeLineItems" type="Baby_Activity__c[]"/>
     <aura:attribute name="selectedType" type="String" default="Activities"/>
+    <aura:attribute name="loading" type="Boolean" default="true" />
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
 
     <div>
@@ -35,12 +36,20 @@
                 </ul>
             </div>
         </div>
-        <ul class="slds-timeline">
-            <aura:iteration items="{!v.timeLineItems}" var="item">
-                <li>
-                    <c:ActivityTimeline_Item activityType="{!item.RecordType.Name}" record="{!item}"/>
-                </li>
-            </aura:iteration>
-        </ul>
+
+        <aura:if isTrue="{!v.loading}">
+            <div class="slds-grid">
+                <c:LoadingData />
+            </div>
+            <aura:set attribute="else">
+                <ul class="slds-timeline">
+                    <aura:iteration items="{!v.timeLineItems}" var="item">
+                        <li>
+                            <c:ActivityTimeline_Item activityType="{!item.RecordType.Name}" record="{!item}"/>
+                        </li>
+                    </aura:iteration>
+                </ul>
+            </aura:set>
+        </aura:if>
     </div>
 </aura:component>

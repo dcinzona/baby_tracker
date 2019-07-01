@@ -4,6 +4,7 @@
 
 ({
     getItems:function(component){
+        component.set("v.loading", true);
         let selected = component.get('v.selectedType');
         let action;
         switch (selected) {
@@ -25,6 +26,7 @@
                 var ret = response.getReturnValue();
                 console.log(ret);
                 component.set("v.timeLineItems", ret);
+                component.set("v.loading", false);
             } else if(state = "ERROR"){
                 let errorMsg = response.getError()[0];
                 let toastParams = {
@@ -35,6 +37,7 @@
                 let toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams(toastParams);
                 toastEvent.fire();
+                component.set("v.loading", false);
             }
         });
         // queue action on the server
