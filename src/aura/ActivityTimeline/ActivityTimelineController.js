@@ -10,14 +10,11 @@
         }
         helper.getItems(component);
     },
-    getActivityItems:function (component,event,helper) {
-        component.set('v.selectedType', 'Activities');
-        localStorage.setItem('selectedType', 'Activities');
-        helper.getItems(component);
-    },
-    getMilestones:function (component,event,helper) {
-        component.set('v.selectedType', 'Milestones');
-        localStorage.setItem('selectedType', 'Milestones');
+
+    handleChange: function (component, event, helper) {
+        let changeValue = event.getParam("value");
+        localStorage.setItem('selectedType', changeValue);
+        //component.set('v.selectedType', changeValue);
         helper.getItems(component);
     }
 });
