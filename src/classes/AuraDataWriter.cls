@@ -33,8 +33,9 @@ public with sharing class AuraDataWriter {
     @AuraEnabled
     public static void startNewSleepRecord(Datetime startTime){
 
-        if(BabyTriggerHelper.getActiveSleepIds().size() > 0){
-            throw new saveException('An active sleep record already exists');
+        List<Id> active = BabyTriggerHelper.getActiveSleepIds();
+        if(active.size() > 0){
+            throw new saveException('An active sleep record already exists: ' + String.join(active,','));
         }
 
         if(startTime == null){

@@ -93,30 +93,26 @@
     },
 
     startSleep:function(component){
-        if(component.get("v.currentlySleeping") == false){
-            if(this.durationInterval){
-                window.clearTimeout(this.durationInterval);
+
+        component.set('v.saving', true);
+
+        if(this.durationInterval){
+            window.clearTimeout(this.durationInterval);
+        }
+
+        let action = component.get("c.startNewSleepRecord");
+        action.setParam('startDate', new Date());
+        action.setCallback(this, function(response){
+            let state = response.getState();
+            if (state === "SUCCESS") {
+                this.resetComponent(component);
+            } else if(state = "ERROR"){
+                this.toast('Error', 'error',response.getError()[0]);
             }
-            component.set('v.saving', true);
-
-            let action = component.get("c.startNewSleepRecord");
-            action.setParam('startDate', new Date());
-            action.setCallback(this, function(response){
-                let state = response.getState();
-                if (state === "SUCCESS") {
-                    this.resetComponent(component);
-                } else if(state = "ERROR"){
-                    this.toast('Error', 'error',response.getError()[0]);
-                }
-                component.set('v.saving', false);
-            });
-            $A.enqueueAction(action);
-        }
-        else{
-            //throw toast
-            this.toast('Error', 'error','A sleep record is already in progress');
-        }
-
+            component.set('v.saving', false);
+        });
+        
+        $A.enqueueAction(action);
     },
 
     saveRecord:function(component, recId, endDate){
