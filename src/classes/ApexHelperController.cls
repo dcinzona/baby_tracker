@@ -226,4 +226,10 @@ public with sharing class ApexHelperController {
         AuraDataWriter.updateSleepRecord(recordId,endDate);
         return getLastSleep();
     }
+
+    @AuraEnabled
+    public static Baby_Activity__c startNewSleepRecord(Datetime startDate){
+        AuraDataWriter.startNewSleepRecord(startDate);
+        return getLastSleep();
+    }
 }

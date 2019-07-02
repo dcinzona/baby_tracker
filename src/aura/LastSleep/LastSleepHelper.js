@@ -98,6 +98,7 @@
                 window.clearTimeout(this.durationInterval);
             }
             component.set('v.saving', true);
+
             let action = component.get("c.startNewSleepRecord");
             action.setParam('startDate', new Date());
             action.setCallback(this, function(response){

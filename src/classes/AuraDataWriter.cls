@@ -40,7 +40,7 @@ public with sharing class AuraDataWriter {
         if(startTime == null){
             startTime = System.now();
         }
-        Baby_Activity__c rec = new Baby_Activity__c(Date_Time__c = startTime);
+        Baby_Activity__c rec = new Baby_Activity__c(Date_Time__c = startTime, RecordTypeId =getRecordTypeIdForName('Sleep'));
 
         insert rec;
     }
