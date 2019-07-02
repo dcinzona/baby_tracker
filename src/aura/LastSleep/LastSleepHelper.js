@@ -7,7 +7,7 @@
         cmp.set("v.loading", true);
 
         var action = cmp.get("c.getLastSleep");
-        //action.setStorable();
+
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS") {
@@ -34,7 +34,6 @@
                 };
 
                 cmp.set('v.pageReference', pageReference);
-
             }
         });
         $A.enqueueAction(action);
@@ -92,13 +91,31 @@
         let recId = component.get('v.currentRecord.Id');
         this.saveRecord(component, recId, new Date());
     },
-    
-    resumeSleep:function(component){
-        if(this.durationInterval){
-            window.clearTimeout(this.durationInterval);
+
+    startSleep:function(component){
+        if(component.get("v.currentlySleeping") == false){
+            if(this.durationInterval){
+                window.clearTimeout(this.durationInterval);
+            }
+            component.set('v.saving', true);
+            let action = component.get("c.startNewSleepRecord");
+            action.setParam('startDate', new Date());
+            action.setCallback(this, function(response){
+                let state = response.getState();
+                if (state === "SUCCESS") {
+                    this.resetComponent(component);
+                } else if(state = "ERROR"){
+                    this.toast('Error', 'error',response.getError()[0]);
+                }
+                component.set('v.saving', false);
+            });
+            $A.enqueueAction(action);
         }
-        let recId = component.get('v.record.Id');
-        this.saveRecord(component, recId,null);
+        else{
+            //throw toast
+            this.toast('Error', 'error','A sleep record is already in progress');
+        }
+
     },
 
     saveRecord:function(component, recId, endDate){
@@ -137,5 +154,16 @@
         cmp.set('v.loading', false);
         this.getLastSleep(cmp);
 
+    },
+    toast:function(title,type, message){
+
+        let toastParams = {
+            title: title,
+            message: message, // Default error message
+            type: type
+        };
+        let toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams(toastParams);
+        toastEvent.fire();
     }
 });

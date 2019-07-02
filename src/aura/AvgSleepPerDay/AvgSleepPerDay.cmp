@@ -9,8 +9,11 @@
     <aura:attribute name="total" type="Integer"/>
     <aura:attribute name="numberOfDays" type="Integer" />
     <aura:attribute name="pageReference" type="Object" />
+    <aura:attribute name="loading" type="Boolean" default="true"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-    <lightning:card class="slds-card_boundary">
+
+    <c:CardWrapper loading="{!v.loading}">
+
         <aura:set attribute="title">
             <c:CardTitle icon="💤" pageReference="{!v.pageReference}">
                 <aura:set attribute="title">
@@ -21,12 +24,15 @@
         <aura:set attribute="footer">
             <c:cardFooterTargetBadge targetCategory="sleep" />
         </aura:set>
-        <div class="slds-card__body slds-card__body_inner slds-text-align--center">
+
+        <aura:set attribute="body">
             <p class="slds-text-heading_medium">Last <strong>{!v.numberOfDays}</strong> Days
             </p>
             <p class="slds-text-heading_large slds-text-color_success" style="font-size:2rem; font-weight: bold;">
                 {!v.total} hours
             </p>
-        </div>
-    </lightning:card>
+        </aura:set>
+
+    </c:CardWrapper>
+
 </aura:component>

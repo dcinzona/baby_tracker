@@ -6,13 +6,14 @@
 
     <aura:attribute name="VitaminDToday" type="Integer"/>
     <aura:attribute name="style" type="String"/>
+    <aura:attribute name="loading" type="Boolean" default="true"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-    <lightning:card title="💊 Vitamin D IUs Today" class="slds-card_boundary">
+    <c:CardWrapper title="💊 Vitamin D IUs Today" loading="{!v.loading}">
+        <aura:set attribute="body">
+            <span class="{!'largeText ' + v.style}"> {!v.VitaminDToday}</span>
+        </aura:set>
         <aura:set attribute="footer">
             <c:cardFooterTargetBadge targetCategory="vitaminD" />
         </aura:set>
-        <div class="slds-card__body slds-card__body_inner slds-align--absolute-center">
-            <span class="{!'largeText ' + v.style}"> {!v.VitaminDToday}</span>
-        </div>
-    </lightning:card>
+    </c:CardWrapper>
 </aura:component>

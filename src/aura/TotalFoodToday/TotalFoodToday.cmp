@@ -11,24 +11,31 @@
     <aura:attribute name="today" type="Date" />
     <aura:attribute name="pageReference" type="Object" />
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-    <lightning:card class="slds-card_boundary">
+    <aura:attribute name="loading" type="Boolean" default="true"/>
+
+    <c:CardWrapper loading="{!v.loading}">
+
         <aura:set attribute="title">
             <c:CardTitle icon="🐽" pageReference="{!v.pageReference}">
-            <aura:set attribute="title">
-                Food Today: <span class="titleText">{!v.today}</span>
-            </aura:set>
+                <aura:set attribute="title">
+                    Food Today: <span class="titleText">{!v.today}</span>
+                </aura:set>
             </c:CardTitle>
         </aura:set>
+
         <aura:set attribute="footer">
             <c:cardFooterTargetBadge targetCategory="food" />
         </aura:set>
-        <div class="slds-card__body slds-card__body_inner slds-text-align--center">
+
+        <aura:set attribute="body">
             <p class="slds-text-heading_large slds-text-color_success" style="font-size:2rem; font-weight: bold;">
                 {!v.totalML} ml
             </p>
             <p class="slds-text-heading_large slds-text-color_default" style="font-weight: bold;">
                 {!v.totalOZ} oz
             </p>
-        </div>
-    </lightning:card>
+        </aura:set>
+
+    </c:CardWrapper>
+
 </aura:component>

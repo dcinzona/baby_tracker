@@ -7,42 +7,34 @@
     <aura:attribute name="totalMinutes" type="Integer" default="0" access="private"/>
     <aura:attribute type="Boolean" name="loadingData" default="true"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-    <aura:method name="refresh" action="{!c.init}" access="public" />
     <aura:if isTrue="{!v.record.Sleep_End_Datetime__c}">
-        <div class="slds-card__body slds-card__body_inner">
-            <lightning:tile class="slds-tile_board">
+        <lightning:tile class="slds-tile_board">
+            <div class="slds-text-align--center" style="margin-top: -1rem;">
+                <div class="slds-grid slds-wrap">
 
-                <div class="slds-text-align--center" style="margin-top: -1rem;">
-                    <div class="slds-grid slds-wrap">
-
-                        <div class="slds-col">
-                            <p style="margin:10px 0 0 0;" class="slds-text-heading_small">Last {!v.record.RecordType.Name}</p>
-                            <div class="focusTextTimeRange slds-text-color_success">
-                                <lightning:formattedDateTime value="{!v.record.Date_Time__c}"
-                                                             hour="numeric" minute="2-digit"
-                                                             timeZone="America/New_York"/>
-                                -
-                                <lightning:formattedDateTime value="{!v.record.Sleep_End_Datetime__c}"
-                                                             hour="numeric" minute="2-digit"
-                                                             timeZone="America/New_York"/>
-                            </div>
-                            <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
-                                <span class="slds-text-title_bold">{!v.totalMinutes}</span> Minutes
-                            </p>
+                    <div class="slds-col">
+                        <p style="margin:10px 0 0 0;" class="slds-text-heading_small">Last {!v.record.RecordType.Name}</p>
+                        <div class="focusTextTimeRange slds-text-color_success">
+                            <lightning:formattedDateTime value="{!v.record.Date_Time__c}"
+                                                         hour="numeric" minute="2-digit"
+                                                         timeZone="America/New_York"/>
+                            -
+                            <lightning:formattedDateTime value="{!v.record.Sleep_End_Datetime__c}"
+                                                         hour="numeric" minute="2-digit"
+                                                         timeZone="America/New_York"/>
                         </div>
-
+                        <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
+                            <span class="slds-text-title_bold">{!v.totalMinutes}</span> Minutes
+                        </p>
                     </div>
 
                 </div>
-            </lightning:tile>
-        </div>
+
+            </div>
+        </lightning:tile>
         <aura:set attribute="else">
-            <aura:renderIf isTrue="{!v.loadingData}">
-                <c:LoadingData />
-            </aura:renderIf>
-            <aura:renderIf isTrue="{!v.loadingData == false}">
-                <c:NoDataSVG />
-            </aura:renderIf>
+            <c:LoadingData loading="{!v.loadingData}" />
+            <c:NoDataSVG noData="{!v.loadingData == false}"/>
         </aura:set>
     </aura:if>
 </aura:component>

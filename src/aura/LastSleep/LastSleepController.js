@@ -9,7 +9,7 @@
     endSleep:function (cmp, event, helper) {
         helper.endSleep(cmp);
     },
-    resume:function (cmp, event, helper) {
-        helper.resumeSleep(cmp);
+    startSleep:function (cmp, event, helper) {
+        helper.startSleep(cmp);
     }
 });

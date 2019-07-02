@@ -1,0 +1,36 @@
+<!--
+ - Created by gmt on 2019-07-01.
+ -->
+
+<aura:component description="CardWrapper">
+    <aura:attribute name="loading" type="Boolean" default="false" />
+    <aura:attribute name="saving" type="Boolean" default="false" />
+    <aura:attribute name="noData" type="Boolean" default="false" />
+    <aura:attribute name="title" type="Aura.Component[]"/>
+    <aura:attribute name="actions" type="Aura.Component[]"/>
+    <aura:attribute name="body" type="Aura.Component[]"/>
+    <aura:attribute name="footer" type="Aura.Component[]"/>
+
+    <div>
+        <lightning:card class="slds-card_boundary">
+            <aura:set attribute="title">
+                {!v.title}
+            </aura:set>
+            <aura:set attribute="actions">
+                {!v.actions}
+            </aura:set>
+            <aura:set attribute="footer">
+                {!v.footer}
+            </aura:set>
+
+            <aura:if isTrue="{!!v.loading}">
+                <div class="slds-card__body slds-card__body_inner slds-text-align--center">
+                    {!v.body}
+                </div>
+            </aura:if>
+            <c:SavingOverlay saving="{!v.saving}"/>
+            <c:LoadingData loading="{!v.loading}"/>
+        </lightning:card>
+    </div>
+
+</aura:component>

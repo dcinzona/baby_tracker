@@ -25,13 +25,30 @@ public with sharing class AuraDataWriter {
             Baby_Activity__c rec = new Baby_Activity__c(Id = recordId, Sleep_End_Datetime__c = endDate);
             System.debug(rec);
             update rec;
+        } else {
+            throw new saveException('No record ID was provided');
         }
+    }
+
+    @AuraEnabled
+    public static void startNewSleepRecord(Datetime startTime){
+
+        if(BabyTriggerHelper.getActiveSleepIds().size() > 0){
+            throw new saveException('An active sleep record already exists');
+        }
+
+        if(startTime == null){
+            startTime = System.now();
+        }
+        Baby_Activity__c rec = new Baby_Activity__c(Date_Time__c = startTime);
+
+        insert rec;
     }
 
     @AuraEnabled
     public static void deleteRecord(Id recordId){
         if(recordId == null){
-            throw new deleteException();
+            throw new deleteException('No record ID was provided');
         }
         delete [SELECT Id FROM Baby_Activity__c WHERE Id =: recordId LIMIT 1];
     }
@@ -55,6 +72,9 @@ public with sharing class AuraDataWriter {
     }
 
     public class deleteException extends Exception{
+
+    }
+    public class saveException extends Exception{
 
     }
 }

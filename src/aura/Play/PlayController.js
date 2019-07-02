@@ -5,7 +5,6 @@
 ({
     init:function(cmp, event, helper){
         helper.setResetTimeOnUI(cmp);
-        //helper.getRecordTypeId(cmp);
 
         var pageReference = {
             "type": "standard__recordPage",

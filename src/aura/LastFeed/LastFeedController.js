@@ -4,6 +4,7 @@
 
 ({
     init: function(cmp){
+        cmp.set("v.loading", true);
         var action = cmp.get("c.getLastFeed");
         //action.setStorable();
         action.setCallback(this, function(response){
@@ -21,6 +22,7 @@
                 };
 
                 cmp.set('v.pageReference', pageReference);
+                cmp.set("v.loading", false);
             }
         });
         $A.enqueueAction(action);

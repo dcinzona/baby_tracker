@@ -6,6 +6,7 @@
 ({
 
     init: function(cmp){
+        cmp.set("v.loading", true);
         var action = cmp.get("c.getAverageSleepPerDay");
         action.setCallback(this, function(response){
             var state = response.getState();
@@ -27,6 +28,8 @@
                 };
                 cmp.set('v.pageReference', pageReference);
             }
+
+            cmp.set('v.loading', false);
 
         });
         $A.enqueueAction(action);

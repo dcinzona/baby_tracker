@@ -43,6 +43,26 @@ public with sharing class ApexHelperController {
 
     }
 
+    @AuraEnabled//(Cacheable=true)
+    public static Baby_Activity__c getLastCompletedSleep(){
+
+        LIST<Baby_Activity__c> acts = [SELECT Id,
+                Date_Time__c,
+                Sleep_End_Datetime__c,
+                Hours_Slept__c,
+                Icon__c,
+                Amount__c
+        FROM Baby_Activity__c
+        WHERE RecordType.DeveloperName = 'Sleep'
+        AND Sleep_End_Datetime__c != null
+        ORDER BY Date_Time__c DESC
+        LIMIT 1 ];
+
+        return acts.size() > 0 ? acts[0] : null;
+
+    }
+
+
     @AuraEnabled //(Cacheable=true)
     public static Baby_Activity__c getLastHeal(){
 
@@ -56,25 +76,6 @@ public with sharing class ApexHelperController {
                 Icon__c
         FROM Baby_Activity__c
         WHERE RecordType.DeveloperName = 'Heal'
-        ORDER BY Date_Time__c DESC
-        LIMIT 1 ];
-
-        return acts.size() > 0 ? acts[0] : null;
-
-    }
-
-    @AuraEnabled//(Cacheable=true)
-    public static Baby_Activity__c getLastCompletedSleep(){
-
-        LIST<Baby_Activity__c> acts = [SELECT Id,
-                Date_Time__c,
-                Sleep_End_Datetime__c,
-                Hours_Slept__c,
-                Icon__c,
-                Amount__c
-        FROM Baby_Activity__c
-        WHERE RecordType.DeveloperName = 'Sleep'
-        AND Sleep_End_Datetime__c != null
         ORDER BY Date_Time__c DESC
         LIMIT 1 ];
 

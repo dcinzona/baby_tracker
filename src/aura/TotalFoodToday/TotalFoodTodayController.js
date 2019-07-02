@@ -4,6 +4,7 @@
 
 ({
     init: function(cmp){
+        cmp.set("v.loading", true);
         var today = $A.localizationService.formatDate(new Date(), "MMMM dd, yyyy");
         cmp.set('v.today', today);
         var action = cmp.get("c.getTotalFoodMLToday");
@@ -26,6 +27,8 @@
                 };
                 cmp.set('v.pageReference', pageReference);
             }
+
+            cmp.set('v.loading', false);
 
         });
         $A.enqueueAction(action);

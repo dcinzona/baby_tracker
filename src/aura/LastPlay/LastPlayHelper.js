@@ -13,7 +13,11 @@
                 let record = response.getReturnValue();
                 component.set("v.record", record);
                 this.getMinutes(component);
-                component.set('v.loading', false);
+                component.set('v.loadingData', false);
+            }
+            else{
+                console.log(state);
+                component.set('v.loadingData', false);
             }
         });
         $A.enqueueAction(action);

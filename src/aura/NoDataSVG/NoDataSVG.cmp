@@ -4,10 +4,14 @@
 
 <aura:component description="NoDataSVG">
     <aura:attribute name="svgName" type="String" default="Desert.svg" />
-    <div class="slds-illustration slds-illustration_small">
-        <img src="{!'/img/chatter/' + v.svgName}" class="slds-illustration__svg" alt=""/>
-        <div class="slds-text-longform">
-            <h3 class="slds-text-heading_medium">No Records</h3>
+    <aura:attribute name="textMessage" type="String" default="No Records" />
+    <aura:attribute name="noData" type="Boolean" default="false" />
+    <aura:if isTrue="{!v.noData}">
+        <div class="slds-illustration slds-illustration_small">
+            <img src="{!'/img/chatter/' + v.svgName}" class="slds-illustration__svg" alt=""/>
+            <div class="slds-text-longform">
+                <h3 class="slds-text-heading_medium">{!v.textMessage}</h3>
+            </div>
         </div>
-    </div>
+    </aura:if>
 </aura:component>

@@ -6,6 +6,28 @@ public with sharing class BabyTriggerHelper {
 
     public static boolean singlerun = false;
 
+    public static void checkForActiveSleepRecordsBeforeInsert(List<Baby_Activity__c> recordsToInsert){
+        List<Baby_Activity__c> recordsWithoutEndDate = new List<Baby_Activity__c>();
+        for(Baby_Activity__c rec: recordsToInsert){
+            if(rec.Sleep_End_Datetime__c == null){
+                recordsWithoutEndDate.add(rec);
+            }
+        }
+        List<Id> ids = getActiveSleepIds();
+        if(recordsWithoutEndDate.size() > 0 && ids.size() > 0){
+            //inserting or updating an active sleep record.
+            //get any sleep records that exist already
+            for(Baby_Activity__c rec : recordsWithoutEndDate){
+                if(rec.Id == null){
+                    throw new AuraDataWriter.saveException('Another active sleep record already exists: ' + String.join(ids,', '));
+                }
+                if(ids.size() > 1 || !ids.contains(rec.Id)){
+                    throw new AuraDataWriter.saveException('Another active sleep record already exists: ' + String.join(ids,', '));
+                }
+            }
+        }
+    }
+
     public static void processOvernightSleepRecords(List<Baby_Activity__c> records){
         if(!singlerun){
             singlerun = true;
@@ -46,8 +68,9 @@ public with sharing class BabyTriggerHelper {
                     }
                 }
             }
-
-            insert overnightRecordsToInsert;
+            if(overnightRecordsToInsert.size() > 0){
+                insert overnightRecordsToInsert;
+            }
         }
     }
 
@@ -55,9 +78,17 @@ public with sharing class BabyTriggerHelper {
         return a.dayOfYear() == b.dayOfYear();
     }
 
-    public static Id getRecordTypeId(String recordTypeDeveloperName){
+    public static Id getRecordTypeId(String recordTypeDeveloperName) {
         Id recordTypeId = Schema.SObjectType.Baby_Activity__c.getRecordTypeInfosByDeveloperName()
                 .get(recordTypeDeveloperName).getRecordTypeId();
         return recordTypeId;
+    }
+
+    public static List<Id> getActiveSleepIds(){
+        Map<Id, Baby_Activity__c> recs = new Map<Id, Baby_Activity__c>([
+                SELECT Id FROM Baby_Activity__c
+                WHERE Sleep_End_Datetime__c = null
+                AND RecordType.DeveloperName = 'Sleep']);
+        return new List<Id>(recs.keySet());
     }
 }

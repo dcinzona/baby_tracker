@@ -14,97 +14,90 @@
     <aura:attribute name="pageReference" type="Object"/>
     <aura:handler name="change" value="{!v.record}" action="{!c.init}"/>
 
-
-    <div>
-        <lightning:card class="slds-card_boundary">
-            <aura:set attribute="title">
-                <c:CardTitle icon="{!v.record.Icon__c}" pageReference="{!v.pageReference}">
-                    <aura:set attribute="title">
-                        <aura:if isTrue="{!v.record}">
-                            Play: <span class="titleText">{!v.record.Name}</span>
-                            <aura:set attribute="else">
-                                Play Widget
-                            </aura:set>
-                        </aura:if>
-                    </aura:set>
-                </c:CardTitle>
-            </aura:set>
-            <aura:set attribute="actions">
-                <aura:if isTrue="{!v.playingNow == false}">
-                    <lightning:button label="Start" onclick="{!c.startPlay}" variant="brand"/>
-                    <aura:set attribute="else">
-                        <lightning:button label="End" variant="brand" class="slds-size--1-of-1" onclick="{!c.endAndSave}"/>
-                    </aura:set>
-                </aura:if>
-            </aura:set>
+    <c:CardWrapper saving="{!v.saving}">
+        <aura:set attribute="title">
+            <c:CardTitle icon="{!v.record.Icon__c}" pageReference="{!v.pageReference}">
+                <aura:set attribute="title">
+                    <aura:if isTrue="{!v.record}">
+                        Play: <span class="titleText">{!v.record.Name}</span>
+                        <aura:set attribute="else">
+                            Play Widget
+                        </aura:set>
+                    </aura:if>
+                </aura:set>
+            </c:CardTitle>
+        </aura:set>
+        <aura:set attribute="actions">
+            <aura:if isTrue="{!v.playingNow == false}">
+                <lightning:button label="Start" onclick="{!c.startPlay}" variant="brand"/>
+                <aura:set attribute="else">
+                    <lightning:button label="End" variant="brand" class="slds-size--1-of-1" onclick="{!c.endAndSave}"/>
+                </aura:set>
+            </aura:if>
+        </aura:set>
+        <aura:set attribute="body">
             <aura:if isTrue="{!v.playingNow}">
-
-                <div class="slds-card__body slds-card__body_inner">
-                    <lightning:tile class="slds-tile_board">
-
-                        <div class="slds-text-align--center">
-                            <div class="slds-grid slds-wrap">
-                                <div class="slds-col">
-                                    <p style="margin:10px 0 0 0;" class="slds-text-heading_small">Playing For:</p>
-                                    <div class="slds-grid slds-grid_align-center slds-gutters">
-                                        <aura:if isTrue="{!v.duration.hours > 0}">
-                                            <div class="slds-col">
-                                                <div class="slds-text-color_success focusText" >
-                                                    {!v.duration.hours}
-                                                </div>
-                                                <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
-                                                    Hour{!v.duration.hours != 1 ? 's': ''}
-                                                </p>
-                                            </div>
-                                        </aura:if>
-                                        <aura:if isTrue="{!v.duration.minutes >= 0}">
-                                            <div class="slds-col">
-                                                <div class="slds-text-color_success focusText">
-                                                    {!v.duration.minutes}
-                                                </div>
-                                                <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
-                                                    Minute{!v.duration.minutes != 1  ? 's': ''}
-                                                </p>
-                                            </div>
-                                        </aura:if>
+                <lightning:tile class="slds-tile_board">
+                    <div class="slds-text-align--center">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col">
+                                <p style="margin:10px 0 0 0;" class="slds-text-heading_small">Playing For:</p>
+                                <div class="slds-grid slds-grid_align-center slds-gutters">
+                                    <aura:if isTrue="{!v.duration.hours > 0}">
                                         <div class="slds-col">
-                                            <div class="slds-text-color_success focusText">
-                                                {!v.duration.seconds}
+                                            <div class="slds-text-color_success focusText" >
+                                                {!v.duration.hours}
                                             </div>
                                             <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
-                                                Second{!v.duration.seconds != 1  ? 's': ''}
+                                                Hour{!v.duration.hours != 1 ? 's': ''}
                                             </p>
                                         </div>
-                                    </div>
-                                    <div class="slds-grid">
-                                        <div class="slds-col slds-size--1-of-1 slds-text-align--left">
-                                            <lightning:input type="text" name="comments" value="{!v.comments}" maxlength="255" label="Comments" class="slds-m-bottom_medium"/>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.duration.minutes >= 0}">
+                                        <div class="slds-col">
+                                            <div class="slds-text-color_success focusText">
+                                                {!v.duration.minutes}
+                                            </div>
+                                            <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
+                                                Minute{!v.duration.minutes != 1  ? 's': ''}
+                                            </p>
                                         </div>
+                                    </aura:if>
+                                    <div class="slds-col">
+                                        <div class="slds-text-color_success focusText">
+                                            {!v.duration.seconds}
+                                        </div>
+                                        <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
+                                            Second{!v.duration.seconds != 1  ? 's': ''}
+                                        </p>
                                     </div>
-
-                                    <lightning:button label="Cancel" variant="destructive" class="slds-size--1-of-1" onclick="{!c.cancel}"/>
-
                                 </div>
+                                <div class="slds-grid">
+                                    <div class="slds-col slds-size--1-of-1 slds-text-align--left">
+                                        <lightning:input type="text" name="comments" value="{!v.comments}" maxlength="255" label="Comments" class="slds-m-bottom_medium"/>
+                                    </div>
+                                </div>
+
+                                <lightning:button label="Cancel" variant="destructive" class="slds-size--1-of-1" onclick="{!c.cancel}"/>
+
                             </div>
                         </div>
+                    </div>
 
-                    </lightning:tile>
-                </div>
-
-
+                </lightning:tile>
                 <aura:set attribute="else">
                     <c:LastPlay record="{!v.record}" aura:id="cLastPlay"/>
                 </aura:set>
             </aura:if>
+        </aura:set>
+        <aura:set attribute="footer">
+            <aura:if isTrue="{!v.playingNow}" >
+                <aura:renderIf isTrue="{!v.record}">
+                    <aura:if isTrue="{!v.record.Sleep_End_Datetime__c}">
 
-            <aura:set attribute="footer">
-                <aura:if isTrue="{!v.playingNow}" >
-                    <aura:renderIf isTrue="{!v.record}">
-                        <aura:if isTrue="{!v.record.Sleep_End_Datetime__c}">
-
-                            <p class="slds-text-body_regular">
-                                <span>Last Play: </span>
-                                <span class="slds-badge">
+                        <p class="slds-text-body_regular">
+                            <span>Last Play: </span>
+                            <span class="slds-badge">
                                     <lightning:formattedDateTime value="{!v.record.Date_Time__c}"
                                                                  hour="2-digit" minute="2-digit"
                                                                  timeZone="America/New_York"/>
@@ -113,18 +106,17 @@
                                                                  hour="2-digit" minute="2-digit"
                                                                  timeZone="America/New_York"/>
                                 </span>
-                            </p>
-                        </aura:if>
+                        </p>
+                    </aura:if>
+                </aura:renderIf>
+                <aura:set attribute="else">
+                    <aura:renderIf isTrue="{!v.record}">
+                        <lightning:badge label="{!v.record.Comments__c}" class="slds-truncate"/>
                     </aura:renderIf>
-                    <aura:set attribute="else">
-                        <aura:renderIf isTrue="{!v.record}">
-                            <lightning:badge label="{!v.record.Comments__c}" class="slds-truncate"/>
-                        </aura:renderIf>
-                    </aura:set>
-                </aura:if>
+                </aura:set>
+            </aura:if>
 
-            </aura:set>
-        </lightning:card>
-        <c:SavingOverlay saving="{!v.saving}"/>
-    </div>
+        </aura:set>
+    </c:CardWrapper>
+
 </aura:component>

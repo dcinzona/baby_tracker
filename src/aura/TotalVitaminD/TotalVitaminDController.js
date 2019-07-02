@@ -5,6 +5,7 @@
 ({
 
     init: function(cmp){
+        cmp.set('v.loading', true);
         var action = cmp.get("c.getTotalVitaminDToday");
         //action.setStorable();
         action.setCallback(this, function(response){
@@ -15,6 +16,7 @@
                 $A.enqueueAction(setStyle);
 
             }
+            cmp.set('v.loading', false);
         });
         $A.enqueueAction(action);
     },
