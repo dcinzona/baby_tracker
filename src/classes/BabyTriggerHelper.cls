@@ -21,7 +21,7 @@ public with sharing class BabyTriggerHelper {
                 if(rec.Id == null){
                     throw new AuraDataWriter.saveException('Another active sleep record already exists: ' + String.join(ids,', '));
                 }
-                if(ids.size() > 1 || !ids.contains(rec.Id)){
+                else if(!ids.contains(rec.Id)){
                     throw new AuraDataWriter.saveException('Another active sleep record already exists: ' + String.join(ids,', '));
                 }
             }
