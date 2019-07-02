@@ -15,7 +15,7 @@
         <aura:set attribute="title">
             <c:CardTitle icon="🐽" pageReference="{!v.pageReference}">
                 <aura:set attribute="title">
-                    Food Daily Average
+                    Daily Avg: <span class="titleText">Last <strong>{!v.numberOfDays}</strong> Days</span>
                 </aura:set>
             </c:CardTitle>
         </aura:set>
@@ -25,8 +25,6 @@
         </aura:set>
 
         <aura:set attribute="body">
-            <p class="slds-text-heading_medium">Last <strong>{!v.numberOfDays}</strong> Days
-            </p>
             <p class="slds-text-heading_large slds-text-color_success" style="font-size:2rem; font-weight: bold;">
                 {!v.totalOZ} oz
             </p>
