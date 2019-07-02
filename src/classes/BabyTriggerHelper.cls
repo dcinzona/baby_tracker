@@ -9,7 +9,7 @@ public with sharing class BabyTriggerHelper {
     public static void checkForActiveSleepRecordsBeforeInsert(List<Baby_Activity__c> recordsToInsert){
         List<Baby_Activity__c> recordsWithoutEndDate = new List<Baby_Activity__c>();
         for(Baby_Activity__c rec: recordsToInsert){
-            if(rec.Sleep_End_Datetime__c == null){
+            if(rec.Sleep_End_Datetime__c == null && rec.RecordType.DeveloperName == 'Sleep'){
                 recordsWithoutEndDate.add(rec);
             }
         }
