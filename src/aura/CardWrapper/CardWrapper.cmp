@@ -10,11 +10,23 @@
     <aura:attribute name="actions" type="Aura.Component[]"/>
     <aura:attribute name="body" type="Aura.Component[]"/>
     <aura:attribute name="footer" type="Aura.Component[]"/>
+    <aura:attribute name="cardCssClass" type="String"/>
+    <aura:attribute name="notDataTitleText" type="String" default="No Records"/>
 
     <div>
-        <lightning:card class="slds-card_boundary">
+        <lightning:card class="{!v.cardCssClass + ' slds-card_boundary'}">
             <aura:set attribute="title">
-                {!v.title}
+                <aura:if isTrue="{!and(!v.loading, !v.noData)}">
+                    {!v.title}
+                    <aura:set attribute="else">
+                        <aura:if isTrue="{!!v.loading}">
+                            {!v.notDataTitleText}
+                            <aura:set attribute="else">
+                            Loading data...
+                            </aura:set>
+                        </aura:if>
+                    </aura:set>
+                </aura:if>
             </aura:set>
             <aura:set attribute="actions">
                 {!v.actions}
@@ -22,12 +34,12 @@
             <aura:set attribute="footer">
                 {!v.footer}
             </aura:set>
-
-            <aura:if isTrue="{!!v.loading}">
-                <div class="slds-card__body slds-card__body_inner slds-text-align--center">
-                    {!v.body}
-                </div>
-            </aura:if>
+            <div class="slds-card__body slds-card__body_inner slds-text-align--center">
+                <aura:if isTrue="{! and(!v.loading, !v.noData)}">
+                        {!v.body}
+                </aura:if>
+            </div>
+            <c:NoDataSVG noData="{!v.noData}" textMessage="No Records" />
             <c:SavingOverlay saving="{!v.saving}"/>
             <c:LoadingData loading="{!v.loading}"/>
         </lightning:card>

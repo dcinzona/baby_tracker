@@ -1,0 +1,18 @@
+<!--
+ - Created by gmt on 2019-07-02.
+ -->
+
+<design:component>
+    <design:attribute name="recordTypeName"
+                      label="Record Type"
+                      datasource="Sleep,Play"
+                      description="The record type of the baby activity loaded into this widget" />
+    <design:attribute name="showRibbon"
+                      default="false"
+                      label="Show Corner Ribbon"
+                      description="The record type of the baby activity loaded into this widget" />
+    <design:attribute name="testing"
+                      default="false"
+                      label="Load Test Records?"
+                      description="This will pull all records, including ones only used for testing (custom field)" />
+</design:component>

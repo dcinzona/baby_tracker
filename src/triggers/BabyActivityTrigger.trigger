@@ -6,6 +6,9 @@ trigger BabyActivityTrigger on Baby_Activity__c (before insert, before update) {
         if(BabyTriggerHelper.singlerun == false){
             BabyTriggerHelper.processOvernightSleepRecords(Trigger.new);
         }
+        if(trigger.isUpdate){
+            //BabyTriggerHelper.processPlayRecords(Trigger.oldMap, Trigger.newMap);
+        }
     }
 
 }

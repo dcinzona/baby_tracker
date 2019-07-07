@@ -18,6 +18,7 @@ public with sharing class ApexHelperController {
                 Amount__c
                 FROM Baby_Activity__c
                 WHERE RecordType.DeveloperName = 'Feed'
+                AND Test_Record__c = false
                 ORDER BY Date_Time__c DESC
                 LIMIT 1 ];
 
@@ -36,6 +37,7 @@ public with sharing class ApexHelperController {
                 Amount__c
         FROM Baby_Activity__c
         WHERE RecordType.DeveloperName = 'Sleep'
+        AND Test_Record__c = false
         ORDER BY Date_Time__c DESC
         LIMIT 1 ];
 
@@ -55,6 +57,7 @@ public with sharing class ApexHelperController {
         FROM Baby_Activity__c
         WHERE RecordType.DeveloperName = 'Sleep'
         AND Sleep_End_Datetime__c != null
+        AND Test_Record__c = false
         ORDER BY Date_Time__c DESC
         LIMIT 1 ];
 
@@ -76,6 +79,7 @@ public with sharing class ApexHelperController {
                 Icon__c
         FROM Baby_Activity__c
         WHERE RecordType.DeveloperName = 'Heal'
+        AND Test_Record__c = false
         ORDER BY Date_Time__c DESC
         LIMIT 1 ];
 
@@ -97,6 +101,7 @@ public with sharing class ApexHelperController {
                 RecordTypeId
         FROM Baby_Activity__c
         WHERE RecordType.DeveloperName = 'Play'
+        AND Test_Record__c = false
         ORDER BY Date_Time__c DESC
         LIMIT 1 ];
 
@@ -113,6 +118,7 @@ public with sharing class ApexHelperController {
                 Icon__c
                 FROM Baby_Activity__c
                 WHERE RecordType.Name = 'Feed'
+                AND Test_Record__c = false
                 AND Date__c = TODAY
         ];
         integer total = 0;
@@ -134,7 +140,9 @@ public with sharing class ApexHelperController {
                 Icon__c
         FROM Baby_Activity__c
         WHERE RecordType.DeveloperName = 'Sleep'
+        AND Test_Record__c = false
         AND Sleep_End_Datetime__c = TODAY
+        AND Test_Record__c = false
         ];
         decimal total = 0;
         for(Baby_Activity__c item : acts){
@@ -153,6 +161,7 @@ public with sharing class ApexHelperController {
         FROM Baby_Activity__c
         WHERE RecordType.DeveloperName = 'Feed'
         AND Date_Time__c = TODAY
+        AND Test_Record__c = false
         ];
         integer totalML = 0;
         for(Baby_Activity__c item : acts){
@@ -169,6 +178,7 @@ public with sharing class ApexHelperController {
                 WHERE RecordType.DeveloperName = 'Feed'
                 AND Date_Time__c = LAST_N_DAYS:7
                 AND Date_Time__c < TODAY
+                AND Test_Record__c = false
                 GROUP BY Date__c
         ];
         integer totalML = 0;
@@ -193,6 +203,7 @@ public with sharing class ApexHelperController {
         WHERE RecordType.DeveloperName = 'Sleep'
         AND Date_Time__c = LAST_N_DAYS:7
         AND Date_Time__c < TODAY
+        AND Test_Record__c = false
         GROUP BY Date__c
         ];
         integer totalML = 0;

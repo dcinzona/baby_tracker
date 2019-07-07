@@ -1,0 +1,12 @@
+<!--
+ - Created by gmt on 2019-07-03.
+ -->
+
+<aura:component description="TimeDiffCalculator">
+    <aura:attribute name="startDate" type="Datetime" />
+    <aura:attribute name="endDate" type="Datetime" />
+    <aura:attribute name="returnDataObject" type="Object" />
+    <aura:handler name="init" value="{!this}" action="{!c.calculateTime}"/>
+    <aura:handler name="change" value="{!v.startDate}" action="{!c.calculateTime}"/>
+    <aura:handler name="change" value="{!v.endDate}" action="{!c.calculateTime}"/>
+</aura:component>

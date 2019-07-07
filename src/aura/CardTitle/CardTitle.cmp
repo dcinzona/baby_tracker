@@ -7,6 +7,7 @@
     <aura:attribute name="containerClass" type="String"/>
     <aura:attribute name="title" type="Aura.Component[]"/>
     <aura:attribute name="pageReference" type="Object"/>
+    <aura:attribute name="recordId" type="Id"/>
     <lightning:navigation aura:id="navService"/>
     <aura:handler name="change" value="{!v.pageReference}" action="{!c.init}"/>
 

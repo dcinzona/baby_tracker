@@ -1,0 +1,7 @@
+<!--
+ - Created by gmt on 2019-07-06.
+ -->
+
+<aura:event type="COMPONENT" description="TimedActivityUpdateEvent">
+    <aura:attribute name="record" type="Object" />
+</aura:event>

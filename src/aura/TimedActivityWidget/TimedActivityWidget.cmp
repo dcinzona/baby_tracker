@@ -1,0 +1,92 @@
+<!--
+ - Created by gmt on 2019-07-02.
+ -->
+
+<aura:component description="Timed Activity Widget"
+                implements="force:appHostable,flexipage:availableForAllPageTypes"
+                controller="TimedActivityController">
+    <aura:attribute name="recordTypeName" type="String" required="true" default="Sleep"/>
+    <aura:attribute name="records" type="Baby_Activity__c[]" />
+    <aura:attribute name="currentRecord" type="Baby_Activity__c" />
+    <aura:attribute name="previousRecord" type="Baby_Activity__c" />
+    <aura:attribute name="isActive" type="Boolean" default="false" />
+    <aura:attribute name="saving" type="Boolean" default="false" />
+    <aura:attribute name="loading" type="Boolean" default="true" />
+    <aura:attribute name="noRecords" type="Boolean" default="false" />
+    <aura:attribute name="pageReference" type="Object"/>
+    <aura:attribute type="string" name="comments" />
+    <aura:attribute name="showRibbon" type="Boolean" default="false" />
+    <aura:attribute name="testing" type="Boolean" default="false" />
+    <aura:attribute name="recordData" type="AuraObject_TimedActivity" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <c:CardWrapper loading="{!v.loading}"
+                   noData="{!v.noRecords}"
+                   saving="{!v.saving}"
+                   notDataTitleText="{!'No ' + v.recordTypeName + ' records'}"
+                   cardCssClass="{!(v.showRibbon ? 'ribbon ' : ' ') + v.recordTypeName}">
+        <aura:set attribute="title">
+            <c:CardTitle icon="{!v.currentRecord.Icon__c}" pageReference="{!v.pageReference}">
+                <aura:set attribute="title">
+                    <aura:if isTrue="{!v.isActive}">
+                        {!v.currentRecord.RecordType.Name}ing Since: <span class="titleText red">
+                        <strong>
+                            <lightning:formattedDateTime value="{!v.currentRecord.Date_Time__c}"
+                                                         hour="numeric" minute="2-digit"
+                                                         timeZone="America/New_York"/> </strong>  ...</span>
+                        <aura:set attribute="else">
+                            {!v.currentRecord.RecordType.Name}: <span class="titleText">{!v.currentRecord.Name}</span>
+                        </aura:set>
+                    </aura:if>
+                </aura:set>
+            </c:CardTitle>
+        </aura:set>
+        <aura:set attribute="actions">
+            <aura:if isTrue="{!v.isActive}">
+                <lightning:button name="End" label="End" variant="brand" onclick="{!c.endTracking}"/>
+                <aura:set attribute="else">
+                    <lightning:button name="Start" label="Start" variant="brand" onclick="{!c.startTracking}"/>
+                </aura:set>
+            </aura:if>
+        </aura:set>
+        <aura:set attribute="body">
+            <aura:if isTrue="{!v.isActive}">
+                <c:TimedActivityActive record="{!v.recordData}" updateRecord="{!c.updateRecord}"/>
+                <aura:set attribute="else">
+                    <c:TimedActivityCompleted record="{!v.currentRecord}" />
+                </aura:set>
+            </aura:if>
+        </aura:set>
+        <aura:set attribute="footer">
+            <aura:if isTrue="{!v.isActive}">
+                <aura:if isTrue="{!v.previousRecord}">
+                    Last {!v.previousRecord.RecordType.Name}:
+
+                    <span class="slds-badge">
+                        <lightning:formattedDateTime value="{!v.previousRecord.Date_Time__c}"
+                                                     hour="numeric" minute="2-digit"
+                                                     timeZone="America/New_York"/>
+                     <lightning:icon iconName="utility:forward" size="xx-small" class="slds-m-horizontal_xx-small time-range-arrow-icon" />
+
+                        <lightning:formattedDateTime value="{!v.previousRecord.Sleep_End_Datetime__c}"
+                                                     hour="numeric" minute="2-digit"
+                                                     timeZone="America/New_York" timeZoneName="short"/>
+                    </span>
+                </aura:if>
+                <aura:set attribute="else">
+                    <aura:if isTrue="{!v.currentRecord.Comments__c}">
+                        <div class="slds-grid_vertical-align-center slds-grid">
+                            <lightning:icon class="slds-m-right_small" iconName="utility:chat" alternativeText="Comments" size="small" />
+                            <span>{!v.currentRecord.Comments__c}</span>
+                        </div>
+                    </aura:if>
+                </aura:set>
+            </aura:if>
+            <aura:renderIf isTrue="{!v.testing}">
+                <lightning:badge label="TESTING" class="slds-badge_inverse" />
+            </aura:renderIf>
+        </aura:set>
+    </c:CardWrapper>
+
+</aura:component>

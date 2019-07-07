@@ -1,0 +1,77 @@
+<!--
+ - Created by gmt on 2019-07-02.
+ -->
+
+<aura:component description="TimedActivityActive">
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="previousRecord" type="Baby_Activity__c" />
+    <aura:attribute name="duration" type="Object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:handler name="change" value="{!v.record.Date_Time__c}" action="{!c.startTiming}"/>
+    <aura:registerEvent name="updateRecord" type="c:TimedActivityUpdateEvent" />
+
+    <lightning:tile class="slds-tile_board">
+        <div class="slds-text-align--center">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col">
+                    <p style="margin:10px 0 0 0;" class="slds-text-heading_small">{!v.record.recordTypeName}ing For:</p>
+                    <div class="slds-grid slds-grid_align-center slds-gutters">
+                        <aura:if isTrue="{!v.duration.hours > 0}">
+                            <div class="slds-col">
+                                <div class="slds-text-color_success focusText" >
+                                    {!v.duration.hours}
+                                </div>
+                                <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
+                                    Hour{!v.duration.hours != 1 ? 's': ''}
+                                </p>
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!v.duration.minutes >= 0}">
+                            <div class="slds-col">
+                                <div class="slds-text-color_success focusText">
+                                    {!v.duration.minutes}
+                                </div>
+                                <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
+                                    Minute{!v.duration.minutes != 1  ? 's': ''}
+                                </p>
+                            </div>
+                        </aura:if>
+                        <div class="slds-col">
+                            <div class="slds-text-color_success focusText">
+                                {!v.duration.seconds}
+                            </div>
+                            <p class="slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
+                                Second{!v.duration.seconds != 1  ? 's': ''}
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <aura:if isTrue="{!v.record.recordTypeName == 'Play'}">
+                        <div class="slds-grid slds-grid_align-center">
+                            <div class="slds-form-element">
+                                <label class="slds-checkbox_toggle slds-grid">
+                                    <span class="slds-form-element__label slds-m-bottom_none slds-text-heading_small">On Tummy?</span>
+                                    <input type="checkbox" name="onTummyCheckbox" checked="{!v.record.onTummy ? 'checked' : ''}" value="{!v.record.onTummy}" aria-describedby="onTummyCheckbox" onclick="{! c.toggleTummyTime }"/>
+                                    <span id="onTummyCheckbox" class="slds-checkbox_faux_container" aria-live="assertive">
+                                  <span class="slds-checkbox_faux"></span>
+                                  <span class="slds-checkbox_on slds-text-color_success">Yes!</span>
+                                  <span class="slds-checkbox_off slds-text-color_destructive">No</span>
+                                </span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </aura:if>
+
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size--1-of-1 slds-text-align--left">
+                            <lightning:input type="text" name="comments" value="{!v.record.comments}" maxlength="255" label="Comments" class="slds-m-bottom_medium"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning:tile>
+
+</aura:component>

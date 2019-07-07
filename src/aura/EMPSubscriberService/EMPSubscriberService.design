@@ -1,0 +1,7 @@
+<!--
+ - Created by gmt on 2019-07-07.
+ -->
+
+<design:component>
+    <design:attribute name="sObjectName" label="sObject Name" default="Baby_Activity__c" dataSource="Baby_Activity__c,Baby_Measure__c"/>
+</design:component>

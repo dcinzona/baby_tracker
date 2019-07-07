@@ -57,19 +57,7 @@ public with sharing class AuraDataWriter {
 
     @AuraEnabled(Cacheable=true)
     public static Id getRecordTypeIdForName(String devName){
-        return getMapOfRecordTypes().get(devName.toLowerCase());
-    }
-
-
-    @AuraEnabled(Cacheable=true)
-    public static Map<String, Id> getMapOfRecordTypes(){
-
-        Map<String, Id> rtMap = new Map<String, Id>();
-        Schema.SObjectType  objType = Baby_Activity__c.SObjectType;
-        for(RecordTypeInfo rt : objType.getDescribe().getRecordTypeInfos()){
-            rtMap.put(rt.getDeveloperName().toLowerCase(),rt.getRecordTypeId());
-        }
-        return rtMap;
+        return RecordTypeHelper.getRecordTypeIdForName(devName);
     }
 
     public class deleteException extends Exception{

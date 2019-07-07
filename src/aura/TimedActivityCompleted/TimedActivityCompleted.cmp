@@ -1,0 +1,67 @@
+<!--
+ - Created by gmt on 2019-07-02.
+ -->
+
+<aura:component description="TimedActivityCompleted">
+    <aura:attribute name="record" type="Baby_Activity__c" />
+    <aura:attribute name="duration" type="Object"/>
+    <aura:attribute name="durationOnTummy" type="Object"/>
+    <aura:handler name="change" value="{!v.record}" action="{!c.init}"/>
+    <lightning:tile class="slds-tile_board">
+        <div class="slds-text-align--center" style="margin-top: -1rem;">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col">
+                    <p style="margin:10px 0 0 0;" class="slds-text-heading_small">Last {!v.record.RecordType.Name}</p>
+                    <div class="focusTextTimeRange slds-text-color_success">
+                        <lightning:formattedDateTime value="{!v.record.Date_Time__c}"
+                                                     hour="numeric" minute="2-digit"
+                                                     timeZone="America/New_York"/>
+                        -
+                        <lightning:formattedDateTime value="{!v.record.Sleep_End_Datetime__c}"
+                                                     hour="numeric" minute="2-digit"
+                                                     timeZone="America/New_York"/>
+                    </div>
+                    <div class="slds-grid slds-gutters slds-grid_align-center slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
+                        <aura:if isTrue="{!v.duration.hours > 0}">
+                            <div class="slds-col">
+                                <span class="slds-text-title_bold">{!v.duration.hours}</span> hr{!v.duration.hours > 1 ? 's' : ''}
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!v.duration.minutes > 0}">
+                            <div class="slds-col">
+                                <span class="slds-text-title_bold">{!v.duration.minutes}</span> min{!v.duration.minutes > 1 ? 's' : ''}
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!v.duration.seconds > 0}">
+                            <div class="slds-col">
+                                <span class="slds-text-title_bold">{!v.duration.seconds}</span> sec{!v.duration.seconds > 1 ? 's' : ''}
+                            </div>
+                        </aura:if>
+                    </div>
+                </div>
+                <aura:if isTrue="{!and(v.record.RecordType.Name == 'Play', v.durationOnTummy)}">
+                    <div class="slds-col slds-size--1-of-1">
+                        <p class="slds-col slds-size--1-of-1 slds-text-heading_small slds-text-color_success slds-m-bottom_small">Time on Tummy</p>
+                        <div class="slds-grid slds-gutters slds-grid_align-center slds-text-heading--medium slds-text-title_caps slds-m-bottom_medium">
+                            <aura:if isTrue="{!v.durationOnTummy.hours > 0}">
+                                <div class="slds-col">
+                                    <span class="slds-text-title_bold slds-badge">{!v.durationOnTummy.hours}</span> hr{!v.durationOnTummy.hours > 1 ? 's' : ''}
+                                </div>
+                            </aura:if>
+                            <aura:if isTrue="{!v.durationOnTummy.minutes > 0}">
+                                <div class="slds-col">
+                                    <span class="slds-text-title_bold slds-badge">{!v.durationOnTummy.minutes}</span> min{!v.durationOnTummy.minutes > 1 ? 's' : ''}
+                                </div>
+                            </aura:if>
+                            <aura:if isTrue="{!v.durationOnTummy.seconds > 0}">
+                                <div class="slds-col">
+                                    <span class="slds-text-title_bold slds-badge">{!v.durationOnTummy.seconds}</span> sec{!v.durationOnTummy.seconds > 1 ? 's' : ''}
+                                </div>
+                            </aura:if>
+                        </div>
+                    </div>
+                </aura:if>
+            </div>
+        </div>
+    </lightning:tile>
+</aura:component>

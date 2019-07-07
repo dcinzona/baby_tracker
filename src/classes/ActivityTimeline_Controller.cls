@@ -31,6 +31,7 @@ public class ActivityTimeline_Controller {
                 Milestone_Title__c
                 FROM Baby_Activity__c
                 WHERE RecordType.DeveloperName = 'Milestone'
+                AND Test_Record__c = FALSE
                 ORDER BY Date_Time__c DESC
         ];
     }
@@ -55,6 +56,7 @@ public class ActivityTimeline_Controller {
                 FROM Baby_Activity__c
                 //WHERE RecordType.DeveloperName = 'Feed'
                 WHERE Date_Time__c >= YESTERDAY
+                AND Test_Record__c = FALSE
                 ORDER BY Date_Time__c DESC
             ];
         for(Baby_Activity__c t: recs)
