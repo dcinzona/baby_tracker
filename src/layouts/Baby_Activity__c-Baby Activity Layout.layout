@@ -72,6 +72,10 @@
                 <behavior>Readonly</behavior>
                 <field>Age_Weeks__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Test_Record__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

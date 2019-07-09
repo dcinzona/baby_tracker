@@ -1,4 +1,3 @@
-
 public with sharing virtual class TimedActivityController {
 
     private static Boolean loadTestRecords = false;

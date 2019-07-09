@@ -214,6 +214,13 @@
         <componentInstances>
             <componentName>TotalVitaminD</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>sObjectName</name>
+                <value>Baby_Activity__c</value>
+            </componentInstanceProperties>
+            <componentName>EMPSubscriberService</componentName>
+        </componentInstances>
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>

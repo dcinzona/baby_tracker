@@ -412,6 +412,27 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>On_Tummy_Last_Toggled__c</fullName>
+        <description>DateTime field storing the last time the OnTummy field was toggled</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>On Tummy Last Toggled</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>On_Tummy__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Tracks whether baby is currently on their tummy during tummy time</description>
+        <externalId>false</externalId>
+        <label>On Tummy</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Sleep_End_Datetime__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -422,6 +443,19 @@
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>Test_Record__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Separated record data so development testing doesn&apos;t affect prod
+Needed if building in Prod</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Separated record data so development testing doesn&apos;t affect prod
+Needed if building in Prod</inlineHelpText>
+        <label>Test Record</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Time__c</fullName>
         <externalId>false</externalId>
         <formula>TIMEVALUE(Date_Time__c - 4/24)</formula>
@@ -430,6 +464,32 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Time</type>
+    </fields>
+    <fields>
+        <fullName>Tummy_Time_Milliseconds__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Stored the amount of time in milliseconds spent on tummy</description>
+        <externalId>false</externalId>
+        <label>Tummy Time Milliseconds</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tummy_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Tummy Time</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Vitamin_D_Drops__c</fullName>

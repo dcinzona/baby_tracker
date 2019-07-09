@@ -21,7 +21,7 @@
         <headerColor>#A102F7</headerColor>
         <logo>LRG_DSC0884</logo>
         <logoVersion>1</logoVersion>
-        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
     </brand>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
@@ -113,7 +113,6 @@
     <setupExperience>all</setupExperience>
     <tabs>standard-home</tabs>
     <tabs>At_a_Glance1</tabs>
-    <tabs>Activity_Timeline</tabs>
     <tabs>Baby_Activity__c</tabs>
     <tabs>Baby_Measure__c</tabs>
     <tabs>standard-Feed</tabs>

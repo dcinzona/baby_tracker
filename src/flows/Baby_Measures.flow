@@ -58,7 +58,7 @@
             <label>No Baby on Record</label>
         </rules>
     </decisions>
-    <interviewLabel>Baby_Measures-1_InterviewLabel</interviewLabel>
+    <interviewLabel>Baby_Measures-2_InterviewLabel</interviewLabel>
     <label>Baby Measures</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -166,7 +166,7 @@
         <object>Baby_Measure__c</object>
     </recordUpdates>
     <startElementReference>myDecision</startElementReference>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>

@@ -3,29 +3,49 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>decorate</name>
+                <name>recordTypeName</name>
+                <value>Play</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showRibbon</name>
                 <value>true</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>richTextValue</name>
-                <value>&lt;p&gt;DEV TESTING&lt;/p&gt;</value>
+                <name>testing</name>
+                <value>true</value>
             </componentInstanceProperties>
-            <componentName>flexipage:richText</componentName>
+            <componentName>TimedActivityWidget</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>recordTypeName</name>
+                <value>Sleep</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showRibbon</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>testing</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>TimedActivityWidget</componentName>
         </componentInstances>
         <name>region1</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>LastFeed</componentName>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b&gt;&amp;lt;=== DEV ||| PROD ====&amp;gt;&lt;/b&gt;&lt;/p&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
         </componentInstances>
-        <componentInstances>
-            <componentName>Play</componentName>
-        </componentInstances>
-        <name>region2</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
                 <name>enableInlineEdit</name>
@@ -37,7 +57,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>filterName</name>
-                <value>OpenTasks</value>
+                <value>UnscheduledTasks</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>hideActionBar</name>
@@ -52,6 +72,23 @@
                 <value>10</value>
             </componentInstanceProperties>
             <componentName>flexipage:filterListCard</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>sObjectName</name>
+                <value>Baby_Activity__c</value>
+            </componentInstanceProperties>
+            <componentName>EMPSubscriberService</componentName>
+        </componentInstances>
+        <name>region2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>Play</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentName>LastSleep</componentName>
         </componentInstances>
         <name>region3</name>
         <type>Region</type>
@@ -69,7 +106,7 @@
         </quickActionListItems>
     </quickActionList>
     <template>
-        <name>flexipage:appHomeTemplateHeaderTwoColumnsLeftSidebar</name>
+        <name>flexipage:appHomeTemplateThreeColumns</name>
     </template>
     <type>AppPage</type>
 </FlexiPage>

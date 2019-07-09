@@ -32,6 +32,7 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Baby_Activity__c.Date_Time__c</groupingColumn>
+                <groupingSortProperties/>
                 <header>Feeds Over Time</header>
                 <legendPosition>Bottom</legendPosition>
                 <report>unfiled$public/Feeds_Over_Time_qRL</report>
@@ -55,6 +56,7 @@
                 <drillToDetailEnabled>false</drillToDetailEnabled>
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
+                <groupingSortProperties/>
                 <header>Feeds Today</header>
                 <report>unfiled$public/Feeds_Today_3fL</report>
                 <showPercentage>false</showPercentage>

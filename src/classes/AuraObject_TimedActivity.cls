@@ -1,4 +1,3 @@
-
 public class AuraObject_TimedActivity {
     @AuraEnabled
     public  String recordId {get; set;}
