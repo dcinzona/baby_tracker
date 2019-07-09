@@ -170,7 +170,7 @@ public with sharing class ApexHelperController {
         return totalML;
     }
 
-    @AuraEnabled(Cacheable=true)
+    @AuraEnabled//(Cacheable=true)
     public static BabyPayload getAverageFoodPerDay(){
         LIST<AggregateResult> acts = [SELECT Date__c,
                 SUM(Amount_ML__c)
@@ -195,7 +195,7 @@ public with sharing class ApexHelperController {
         return payload;
     }
 
-    @AuraEnabled(Cacheable=true)
+    @AuraEnabled//(Cacheable=true)
     public static BabyPayload getAverageSleepPerDay(){
         LIST<AggregateResult> acts = [SELECT Date__c,
                 SUM(Hours_Slept__c)
@@ -206,17 +206,17 @@ public with sharing class ApexHelperController {
         AND Test_Record__c = false
         GROUP BY Date__c
         ];
-        integer totalML = 0;
+        Decimal totalML = 0;
         for(AggregateResult item : acts){
             system.debug(item);
-            totalML += Integer.valueOf(item.get('expr0'));
+            totalML += Double.valueOf(item.get('expr0'));
         }
         Integer numberOfRecords = acts.size();
-        Double avg = totalML / numberOfRecords;
+        Decimal avg = totalML / numberOfRecords;
 
         BabyPayload payload = new BabyPayload();
         payload.AverageDays = numberOfRecords;
-        payload.AverageAmountPerDay = avg;
+        payload.AverageAmountPerDay = avg.setScale(2, RoundingMode.HALF_UP);
         return payload;
     }
 
