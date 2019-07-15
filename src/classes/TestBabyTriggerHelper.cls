@@ -44,10 +44,11 @@ private class TestBabyTriggerHelper {
 
     @IsTest
     static void testAnotherActiveRecordExists() {
+        Id sleepRt = BabyTriggerHelper.getRecordTypeId('Sleep');
         Baby_Activity__c active = new  Baby_Activity__c();
         active.Date_Time__c = Datetime.newInstance(Date.today().year(), Date.today().month(), Date.today().day(), 22, 12, 0);
         //rec.Sleep_End_Datetime__c =  rec.Date_Time__c.addHours(1);
-        active.RecordTypeId = BabyTriggerHelper.getRecordTypeId('Sleep');
+        active.RecordTypeId = sleepRt;
         insert active;
 
         Test.startTest();
@@ -55,7 +56,7 @@ private class TestBabyTriggerHelper {
         try{
             rec.Date_Time__c = Datetime.newInstance(Date.today().year(), Date.today().month(), Date.today().day(), 22, 12, 0);
             //rec.Sleep_End_Datetime__c =  rec.Date_Time__c.addHours(1);
-            rec.RecordTypeId = BabyTriggerHelper.getRecordTypeId('Sleep');
+            rec.RecordTypeId = sleepRt;
             insert rec;
         }catch (Exception ex){
             active.Sleep_End_Datetime__c =  active.Date_Time__c.addHours(1);

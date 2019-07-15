@@ -5,14 +5,14 @@
 public with sharing class BabyTriggerHelper {
 
     public static boolean singlerun = false;
-    public static Map<String, Id> recordTypesMap = RecordTypeHelper.getBabyActivityRecordTypeIdMap();
     public static Map<Id, List<Id>> activeRecordIdsByRecordTypeMap = new Map<Id, List<Id>>();
 
     public static void checkForActiveSleepRecordsBeforeInsert(List<Baby_Activity__c> recordsToInsert){
         List<Baby_Activity__c> recordsWithoutEndDate = new List<Baby_Activity__c>();
+        Id sleepRecType = getRecordTypeId('Sleep');
         for(Baby_Activity__c rec: recordsToInsert){
-            if(rec.Sleep_End_Datetime__c == null && rec.RecordType.DeveloperName == 'Sleep'){
-                if(rec.RecordTypeId == recordTypesMap.get('sleep')){
+            if(rec.Sleep_End_Datetime__c == null){
+                if(rec.RecordTypeId == sleepRecType){
                     recordsWithoutEndDate.add(rec);
                 }
             }
@@ -58,7 +58,7 @@ public with sharing class BabyTriggerHelper {
             singlerun = true;
 
             List<Baby_Activity__c> sleepActivities = new List<Baby_Activity__c>();
-            Id sleepRecTypeId = BabyTriggerHelper.getRecordTypeId('Sleep');
+            Id sleepRecTypeId = getRecordTypeId('Sleep');
 
             for(Baby_Activity__c rec : records){
                 if(rec.RecordTypeId == sleepRecTypeId){
@@ -104,16 +104,15 @@ public with sharing class BabyTriggerHelper {
     }
 
     public static Id getRecordTypeId(String recordTypeDeveloperName) {
-        Id recordTypeId = Schema.SObjectType.Baby_Activity__c.getRecordTypeInfosByDeveloperName()
-                .get(recordTypeDeveloperName).getRecordTypeId();
-        return recordTypeId;
+        RecordTypeUtility rtUtil = new RecordTypeUtility().forObject('Baby_Activity__c');
+        return rtUtil.getRecordTypeIdByDeveloperName(recordTypeDeveloperName);
     }
 
     public static List<Id> getActiveSleepIds(){
         List<Id> recordTypesThatMustBeClosed = new List<Id>();
-        recordTypesThatMustBeClosed.add(recordTypesMap.get('sleep'));
+        recordTypesThatMustBeClosed.add(getRecordTypeId('Sleep'));
         //recordTypesThatMustBeClosed.add(recordTypesMap.get('play'));
-
+        System.debug(recordTypesThatMustBeClosed);
         Map<Id, Baby_Activity__c> recs = new Map<Id, Baby_Activity__c>([
                 SELECT Id FROM Baby_Activity__c
                 WHERE Sleep_End_Datetime__c = null
@@ -124,8 +123,8 @@ public with sharing class BabyTriggerHelper {
 
     public static void getActiveRecordIds(){
         List<Id> recordTypesThatMustBeClosed = new List<Id>();
-        recordTypesThatMustBeClosed.add(recordTypesMap.get('sleep'));
-        recordTypesThatMustBeClosed.add(recordTypesMap.get('play'));
+        recordTypesThatMustBeClosed.add(getRecordTypeId('Sleep'));
+        recordTypesThatMustBeClosed.add(getRecordTypeId('Play'));
 
         Map<Id, Baby_Activity__c> recs = new Map<Id, Baby_Activity__c>([
                 SELECT Id FROM Baby_Activity__c
