@@ -1,10 +1,13 @@
 /**
- * Created by gtandeciarz on 2019-07-15.
+ * Created by gtandeciarz on 2019-07-16.
  */
-
-
+/*
+ * Without Sharing is the default setting as we want to be able to get all record types without checking the current running user
+ * Sharing can be enforce by specifying .withPermissions(true) which checks to see if the running user has access to the record type
+ */
 public without sharing class RecordTypeUtility {
 
+    @TestVisible
     private Boolean enforceSharing = false;
     private String objectAPIName {get;set;}
     private List<RecordTypeInfo> allRecordTypes_priv {get; private set;}
@@ -50,14 +53,23 @@ public without sharing class RecordTypeUtility {
         Map<String, RecordTypeInfo> rtMap = new Map<String, RecordTypeInfo>();
         for(RecordTypeInfo info : this.getAllowedRecordTypesList()){
             rtMap.put(info.getDeveloperName().toLowerCase(), info);
+            rtMap.put(info.getDeveloperName(), info);
+            rtMap.put(info.getDeveloperName().toUpperCase(), info);
         }
         return rtMap;
     }
 
+    /****
+     *
+     *
+     * @return Map with lowercase keys
+     */
     public Map<String, Id> getIdsMap(){
         Map<String, Id> rtMap = new Map<String, Id>();
         for(RecordTypeInfo info : this.getAllowedRecordTypesList()){
             rtMap.put(info.getDeveloperName().toLowerCase(), info.getRecordTypeId());
+            rtMap.put(info.getDeveloperName(), info.getRecordTypeId());
+            rtMap.put(info.getDeveloperName().toUpperCase(), info.getRecordTypeId());
         }
         return rtMap;
     }
