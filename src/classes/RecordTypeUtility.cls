@@ -1,8 +1,5 @@
 /**
  * Created by gtandeciarz on 2019-07-16.
- */
-/*
- * Without Sharing is the default setting as we want to be able to get all record types without checking the current running user
  * Sharing can be enforce by specifying .withPermissions(true) which checks to see if the running user has access to the record type
  */
 public without sharing class RecordTypeUtility {
