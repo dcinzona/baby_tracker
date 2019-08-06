@@ -11,21 +11,21 @@ This app was primarily developed with a mobile use-case in mind.  The idea behin
 
 Here are some screenshots of the mobile UI:
 
-<img src="https://raw.githubusercontent.com/dcinzona/baby_tracker/assets/PlayTab.PNG" alt='Play Tab' style="width:48%; margin-right:1%;"/>
+<img src="https://raw.githubusercontent.com/dcinzona/baby_tracker/assets/PlayTab.PNG" alt='Play Tab' style="width:48%; margin-right:1%;" width="320"/>
 
-<img src="https://raw.githubusercontent.com/dcinzona/baby_tracker/assets/Timeline.PNG" alt='Timeline'  style="width:48%; margin-right:1%;"/>
+<img src="https://raw.githubusercontent.com/dcinzona/baby_tracker/assets/Timeline.PNG" alt='Timeline'  style="width:48%; margin-right:1%;" width="320"/>
 
-<img src="https://raw.githubusercontent.com/dcinzona/baby_tracker/assets/Sleeping.PNG" alt='Sleeping'  style="width:48%; margin-right:1%;"/>
+<img src="https://raw.githubusercontent.com/dcinzona/baby_tracker/assets/Sleeping.PNG" alt='Sleeping'  style="width:48%; margin-right:1%;" width="320"/>
 
-<img src="https://raw.githubusercontent.com/dcinzona/baby_tracker/assets/PushNotifications.PNG" alt='PushNotifications'  style="width:48%;"/>
+<img src="https://raw.githubusercontent.com/dcinzona/baby_tracker/assets/PushNotifications.PNG" alt='PushNotifications'  style="width:48%;" width="320"/>
 
 
 
 ### Todo
-- [] Support multiple babies.  I just had one so my view was pretty miopic. (This is somewhat imlemented with the data model (lookup on Contact with Baby Record Type) but is not really exposed).
-- [] Packaged install with configuration steps
-- [] Better support for multiple users (guardians)
-- [] Community User support to allow for up to 25 different system users
-- [] Timezone selection (right now, overnight sleeps break the record into two separate sleep records to be able to track how much sleep the baby got over a 24 hour period in standard reporting)
+- [ ] Support multiple babies.  I just had one so my view was pretty miopic. (This is somewhat imlemented with the data model (lookup on Contact with Baby Record Type) but is not really exposed).
+- [ ] Packaged install with configuration steps
+- [ ] Better support for multiple users (guardians)
+- [ ] Community User support to allow for up to 25 different system users
+- [ ] Timezone selection (right now, overnight sleeps break the record into two separate sleep records to be able to track how much sleep the baby got over a 24 hour period in standard reporting)
 
 And probably a bunch of other stuff that I will never have the time to implement.
